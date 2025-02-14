@@ -1,0 +1,108 @@
+/* Configuración básica - base.html */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('https://images.pexels.com/photos/3214110/pexels-photo-3214110.jpeg?cs=srgb&dl=pexels-frank-cone-140140-3214110.jpg&fm=jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    background-color: #1a1b1e;
+    color: white;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: #1a1b1e;
+    border-right: 1px solid #2c2d30;
+    transition: transform 0.3s ease;
+    box-shadow: 10px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo */
+.logo {
+    padding: 1rem;
+    border-bottom: 1px solid #2c2d30;
+    text-align: center;
+}
+
+.logo img {
+    width: 120px;
+    height: auto;
+}
+
+/* Menú de navegación */
+.nav-menu {
+    padding: 1rem 0;
+    border-bottom: 1px solid #2c2d30;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    color: #a0a0a0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.nav-item.active, .nav-item:hover {
+    background-color: #2c2d30;
+    color: white;
+}
+
+.nav-item .material-icons {
+    margin-right: 1rem;
+}
+
+/* Contenido principal */
+.main-content {
+    margin-left: 250px;
+    padding: 2rem;
+    color: white;
+}
+
+
+
+
+/* Configuración principal - principal.html */
+
+/* Div principal */
+.div-main-home {
+    width: 100%;
+    height: auto;
+    background-color: #1a1b1e80;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid #2c2d30;
+    border-radius: 10px;
+}
+
+/* Logo*/
+.logo-home {
+    height: auto;
+    border-bottom: 1px solid #2c2d30;
+    text-align: center;
+    margin: 3rem 0rem;
+}
+
+.logo-home img {
+    width: 200px;
+    height: auto;
+}
+
+.div-main-home p {
+    width: 100%;
+    max-width: 600px;
+}

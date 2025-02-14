@@ -81,6 +81,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mysql.connector.django',  # Motor para mysql-connector-python
+#         'NAME': 'nombre_de_tu_base_de_datos',  # Nombre de la base de datos
+#         'USER': 'tu_usuario',                # Usuario de la base de datos
+#         'PASSWORD': 'tu_contraseña',         # Contraseña del usuario
+#         'HOST': 'localhost',                 # Dirección del servidor
+#         'PORT': '3306',                      # Puerto de la base de datos
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

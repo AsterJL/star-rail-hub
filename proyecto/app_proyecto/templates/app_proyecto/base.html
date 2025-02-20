@@ -25,32 +25,32 @@
             <!-- Inicio -->
             <a href="{% url 'principal' %}" class="nav-item {% if request.resolver_match.url_name == 'principal' %}active{% endif %}">
                 <span class="material-icons">home</span>
-                <span>Inicio</span>
+                <span class="span-text">Inicio</span>
             </a>
             <!-- Personajes -->
             <a href="{% url 'personajes_list' %}" class="nav-item {% if request.resolver_match.url_name == 'personajes_list' %}active{% endif %}">
                 <span class="material-icons">person</span>
-                <span>Personajes</span>
+                <span class="span-text">Personajes</span>
             </a>
             <!-- Armas -->
             <a href="{% url 'armas_list' %}" class="nav-item {% if request.resolver_match.url_name == 'armas_list' %}active{% endif %}">
                 <span class="material-icons">lightbulb</span>
-                <span>Armas</span>
+                <span class="span-text">Armas</span>
             </a>
             <!-- Equipo -->
             <a href="{% url 'equipo_list' %}" class="nav-item {% if request.resolver_match.url_name == 'equipo_list' %}active{% endif %}">
                 <span class="material-icons">inventory_2</span>
-                <span>Equipo</span>
+                <span class="span-text">Equipo</span>
             </a>
             <!-- Materiales -->
             <a href="{% url 'materiales_list' %}" class="nav-item {% if request.resolver_match.url_name == 'materiales_list' %}active{% endif %}">
                 <span class="material-icons">category</span>
-                <span>Materiales</span>
+                <span class="span-text">Materiales</span>
             </a>
             <!-- Enciclopedia -->
             <a href="{% url 'enciclopedia' %}" class="nav-item {% if request.resolver_match.url_name == 'enciclopedia' %}active{% endif %}">
                 <span class="material-icons">apps</span>
-                <span>Enciclopedia</span>
+                <span class="span-text">Enciclopedia</span>
             </a>
             <!-- + elementos -->
         </nav>
@@ -61,7 +61,23 @@
         {% block contenido %}{% endblock %}
     </main>
 
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="float-left">
+            <p>Star Rail Hub es una base de datos hecha para un trabajo sobre el juego Honkai: Star Rail</p>
+            <p>Esta web no está afiliada con Hoyoverse y todos los elementos usados del juego son de su propiedad.</p>
+        </div>
+        <div class="float-right">
+            <a href="https://jcfp-port1.web.app">
+                <img src="https://jcfp-port1.web.app/media/images/JL.jpeg" alt="JL Logo" class="site-footer-logo">
+            </a>
+        </div>
+    </footer>
+
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<!-- ji -->
+ <!-- Usuario.0 -->

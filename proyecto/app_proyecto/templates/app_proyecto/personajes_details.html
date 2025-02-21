@@ -1,0 +1,185 @@
+{% extends 'app_proyecto/base.html' %}
+{% block titulo %}Personajes - {{personajes.nombre}}{% endblock %}
+
+{% block contenido %}
+<div class="character-details">
+    <!-- Header -->
+    <header class="character-header">
+        <div class="character-image-details">
+            {% with personajes.imagenes_personaje.first as imagen %}
+            <img src="{{ imagen.imagen.url }}" alt="{{ personajes.nombre }}">
+            {% endwith %}
+        </div>
+        <div class="character-basic-info">
+            <h1>{{ personajes.nombre }}</h1>
+            <div class="character-traits">
+                <div class="rareza">
+                    {% if personajes.rareza.nombre == "5 estrellas" %}
+                    <img src="{{ personajes.rareza.imagen.url }}" alt="{{ personajes.rareza.nombre }}">
+                    <img src="{{ personajes.rareza.imagen.url }}" alt="{{ personajes.rareza.nombre }}">
+                    <img src="{{ personajes.rareza.imagen.url }}" alt="{{ personajes.rareza.nombre }}">
+                    <img src="{{ personajes.rareza.imagen.url }}" alt="{{ personajes.rareza.nombre }}">
+                    <img src="{{ personajes.rareza.imagen.url }}" alt="{{ personajes.rareza.nombre }}">
+                    {% else %}
+                    <img src="{{ personajes.rareza.imagen.url }}" alt="{{ personajes.rareza.nombre }}">
+                    <img src="{{ personajes.rareza.imagen.url }}" alt="{{ personajes.rareza.nombre }}">
+                    <img src="{{ personajes.rareza.imagen.url }}" alt="{{ personajes.rareza.nombre }}">
+                    <img src="{{ personajes.rareza.imagen.url }}" alt="{{ personajes.rareza.nombre }}">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación -->
+    <nav class="character-nav" id="characterNav">
+        <ul>
+            <li><a href="#informacion">Información</a></li>
+            <li><a href="#habilidades">Habilidades</a></li>
+            <li><a href="#builds">Builds</a></li>
+        </ul>
+    </nav>
+
+    <!-- Información General -->
+    <section id="informacion" class="character-section">
+        <h2>Información General</h2>
+        <div class="info-grid">
+            <div class="info-description">
+                <p>{{ personajes.descripcion }}</p>
+            </div>
+            <div class="info-table">
+                <table class="character-info-table">
+                    <tr>
+                        <th>Nombre</th>
+                        <td>{{ personajes.nombre }}</td>
+                    </tr>
+                    <tr>
+                        <th>Rareza</th>
+                        <td class="rareza">
+                            <div class="character-traits rareza">
+                                {% if personajes.rareza.nombre == "5 estrellas" %}
+                                <img src="{{ personajes.rareza.imagen.url }}" alt="{{ personajes.rareza.nombre }}">
+                                <img src="{{ personajes.rareza.imagen.url }}" alt="{{ personajes.rareza.nombre }}">
+                                <img src="{{ personajes.rareza.imagen.url }}" alt="{{ personajes.rareza.nombre }}">
+                                <img src="{{ personajes.rareza.imagen.url }}" alt="{{ personajes.rareza.nombre }}">
+                                <img src="{{ personajes.rareza.imagen.url }}" alt="{{ personajes.rareza.nombre }}">
+                                {% else %}
+                                <img src="{{ personajes.rareza.imagen.url }}" alt="{{ personajes.rareza.nombre }}">
+                                <img src="{{ personajes.rareza.imagen.url }}" alt="{{ personajes.rareza.nombre }}">
+                                <img src="{{ personajes.rareza.imagen.url }}" alt="{{ personajes.rareza.nombre }}">
+                                <img src="{{ personajes.rareza.imagen.url }}" alt="{{ personajes.rareza.nombre }}">
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Elemento</th>
+                        <td>
+                            <img src="{{ personajes.elemento.imagen.url }}" alt="{{ personajes.elemento.nombre }}" class="info-icon">
+                            {{ personajes.elemento.nombre }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Función</th>
+                        <td>
+                            <img src="{{ personajes.funcion.imagen.url }}" alt="{{ personajes.funcion.nombre }}" class="info-icon">
+                            {{ personajes.funcion.nombre }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Habilidades -->
+    <section id="habilidades" class="character-section">
+        <h2>Habilidades</h2>
+        <div class="skills-grid">
+            {% for habilidad in habilidades %}
+            <div class="skill-card">
+                <div class="skill-header">
+                    <img src="{{ habilidad.imagen.url }}" alt="{{ habilidad.nombre }}" class="skill-icon">
+                    <h3>{{ habilidad.nombre }}</h3>
+                </div>
+                <div class="skill-type">{{ habilidad.tipo }}</div>
+                <p class="skill-description">{{ habilidad.descripcion }}</p>
+                <div class="skill-materials">
+                    <h4>Materiales necesarios:</h4>
+                    <div class="materials-grid">
+                        {% for material in habilidad.materiales.all %}
+                        <div class="material-card">
+                            <img src="{{ material.imagen.url }}" alt="{{ material.nombre }}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Builds -->
+    <section id="builds" class="character-section">
+        <h2>Builds</h2>
+        
+        <div class="builds-grid">
+            <div class="build-category">
+                <h4>Armas Recomendadas</h4>
+                <div class="recommended-items">
+                    {% for arma in armas_recomendadas %}
+                    <div class="item">
+                        {% with arma.imagenes_arma.first as imagen %}
+                        <img src="{{ imagen.imagen.url }}" alt="{{ arma.nombre }}">
+                        {% endwith %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="build-category">
+                <h4>Equipo Recomendado</h4>
+                <div class="recommended-items">
+                    {% for equipo in equipo_recomendado %}
+                    <div class="item">
+                        <img src="{{ equipo.imagen.url }}" alt="{{ equipo.nombre }}">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="build-category">
+                <h4>Sinergias</h4>
+                <div class="recommended-items">
+                    {% for sinergia in sinergias %}
+                    <div class="item">
+                        {% with sinergia.imagenes_personaje.first as imagen %}
+                        <img src="{{ imagen.imagen.url }}" alt="{{ sinergia.nombre }}">
+                        {% endwith %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    /* Este script hará que cuando el menú de navegación vaya a salir de la pantalla, este 
+    se quede pegado a la parte superior de la pantalla para así mantenerlo a la vista */
+    document.addEventListener('DOMContentLoaded', function() {
+        var nav = document.getElementById('characterNav');
+        var navTop = nav.offsetTop;
+
+        function stickyNav() {
+            if (window.scrollY >= navTop) {
+                nav.classList.add('sticky');
+            } else {
+                nav.classList.remove('sticky');
+            }
+        }
+        window.addEventListener('scroll', stickyNav);
+    });
+</script>
+{% endblock %}

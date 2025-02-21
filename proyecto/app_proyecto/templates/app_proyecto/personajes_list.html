@@ -65,6 +65,7 @@
     <!-- Grid de Personajes -->
     <div class="characters-grid">
         {% for personaje in personajes %}
+        <!-- Carta de Personaje -->
         <a href="{% url 'personajes_details' personaje.pk %}" class="character-link">
             <div class="character-card">
                 <div class="character-image">
@@ -78,7 +79,7 @@
                         <img src="{{ personaje.funcion.imagen.url }}" alt="{{ personaje.funcion.nombre }}" class="funcion-icon">
                     </div>
                     
-                    <!-- Indicador de rareza -->
+                    <!-- Pie de carta -->
                     <div class="character-info">
                         <h3>{{ personaje.nombre }}</h3>
                         <div class="rareza-indicator">

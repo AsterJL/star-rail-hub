@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from django.views.generic import View, ListView, DetailView, UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
+from django.db.models import Prefetch # Importamos esto para reducir el número de queries y mejorar así el rendimiento.
 
 # Create your views here.
 
@@ -47,6 +48,22 @@ class Personajes_Details (DetailView):
     model = Personaje
     template_name = 'app_proyecto/personajes_details.html'
     context_object_name = 'personajes'
+
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+        personaje = self.object
+
+        personaje.habilidades.prefetch_related('materiales')
+        personaje.armas.prefetch_related('imagenes_arma')
+        personaje.equipo.all()
+        personaje.sinergias.prefetch_related('imagenes_personaje')
+
+        contexto['habilidades'] = personaje.habilidades.all()
+        contexto['armas_recomendadas'] = personaje.armas.all()
+        contexto['equipo_recomendado'] = personaje.equipo.all()
+        contexto['sinergias'] = personaje.sinergias.all()
+
+        return contexto
 
 class Personajes_Create (CreateView):
     model = Personaje

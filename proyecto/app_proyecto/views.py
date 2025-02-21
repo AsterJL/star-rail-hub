@@ -15,6 +15,34 @@ class Personajes_List (ListView):
     template_name = 'app_proyecto/personajes_list.html'
     context_object_name = 'personajes'
 
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+    
+        contexto['elementos'] = ElementoPersonaje.objects.all()
+        contexto['rarezas'] = Rareza.objects.all()
+        contexto['funciones'] = Funcion.objects.all()
+
+        return contexto
+    
+    def get_queryset(self):
+        query = super().get_queryset()
+        
+        elemento = self.request.GET.get('elemento')
+        rareza = self.request.GET.get('rareza')
+        funcion = self.request.GET.get('funcion')
+        nombre = self.request.GET.get('nombrePersonaje')
+
+        if elemento:
+            query = query.filter(elemento__nombre=elemento)
+        if rareza:
+            query = query.filter(rareza__nombre=rareza)
+        if funcion:
+            query = query.filter(funcion__nombre=funcion)
+        if nombre:
+            query = query.filter(nombre__icontains=nombre)
+
+        return query
+
 class Personajes_Details (DetailView):
     model = Personaje
     template_name = 'app_proyecto/personajes_details.html'

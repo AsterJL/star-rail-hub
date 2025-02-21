@@ -2,6 +2,104 @@
 {% block titulo %}Personajes{% endblock %}
 
 {% block contenido %}
-    <h1>Bienvenido</h1>
-    <p>Este es la página de Personajes</p>
+<div class="characters-container">
+    <!-- Filtros -->
+    <form method="GET" class="filters-section">
+        <!-- Filtro de Nombre -->
+        <div class="search-bar">
+            <input type="text" name="nombrePersonaje" placeholder="Buscar personaje..." value="{{ request.GET.nombrePersonaje|default:'' }}">
+        </div>
+        
+        <div class="filter-groups">
+            <!-- Filtro de Rareza -->
+            <div class="filter-group">
+                <h3>Rareza</h3>
+                <div class="filter-options">
+                    {% for rareza in rarezas|slice:":2" %} <!-- Se limita a recorrer los dos primeros parámetros -->
+                    <label class="filter-btn rareza-btn {% if request.GET.rareza == rareza.nombre %}active-filter{% endif %}">
+                        <input type="radio" name="rareza" value="{{ rareza.nombre }}" {% if request.GET.rareza == rareza.nombre %}checked{% endif %} onchange="this.form.submit()">
+                        <img src="{{ rareza.imagen.url }}" alt="{{ rareza.nombre }}">
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Filtro de Elemento -->
+            <div class="filter-group">
+                <h3>Elemento</h3>
+                <div class="filter-options">
+                    {% for elemento in elementos %}
+                    <label class="filter-btn elemento-btn {% if request.GET.elemento == elemento.nombre %}active-filter{% endif %}">
+                        <input type="radio" name="elemento" value="{{ elemento.nombre }}" {% if request.GET.elemento == elemento.nombre %}checked{% endif %} onchange="this.form.submit()">
+                        <img src="{{ elemento.imagen.url }}" alt="{{ elemento.nombre }}">
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Filtro de Función -->
+            <div class="filter-group">
+                <h3>Función</h3>
+                <div class="filter-options">
+                    {% for funcion in funciones %}
+                    <label class="filter-btn funcion-btn {% if request.GET.funcion == funcion.nombre %}active-filter{% endif %}">
+                        <input type="radio" name="funcion" value="{{ funcion.nombre }}" {% if request.GET.funcion == funcion.nombre %}checked{% endif %} onchange="this.form.submit()">
+                        <img src="{{ funcion.imagen.url }}" alt="{{ funcion.nombre }}">
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Limpiar filtros -->
+            <div class="filter-group">
+                <h3>Limpiar</h3>
+                <div class="filter-options">
+                    <a href="{% url 'personajes_list' %}" class="filter-btn clear-btn">
+                        <span>✕</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Grid de Personajes -->
+    <div class="characters-grid">
+        {% for personaje in personajes %}
+        <a href="{% url 'personajes_details' personaje.pk %}" class="character-link">
+            <div class="character-card">
+                <div class="character-image">
+                    {% with personaje.imagenes_personaje.first as imagen %}
+                    <img src="{{ imagen.imagen.url }}" alt="{{ personaje.nombre }}">
+                    {% endwith %}
+                    
+                    <!-- Iconos de elemento y función -->
+                    <div class="character-icons">
+                        <img src="{{ personaje.elemento.imagen.url }}" alt="{{ personaje.elemento.nombre }}" class="elemento-icon">
+                        <img src="{{ personaje.funcion.imagen.url }}" alt="{{ personaje.funcion.nombre }}" class="funcion-icon">
+                    </div>
+                    
+                    <!-- Indicador de rareza -->
+                    <div class="character-info">
+                        <h3>{{ personaje.nombre }}</h3>
+                        <div class="rareza-indicator">
+                            {% if personaje.rareza.nombre == "5 estrellas" %}
+                            <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                            <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                            <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                            <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                            <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                            {% else %}
+                            <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                            <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                            <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                            <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

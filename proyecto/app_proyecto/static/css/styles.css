@@ -86,7 +86,7 @@ body {
     background-color: #1a1b1e80;
     padding: 1.5rem;
     margin-top: 3rem;
-    position: relative;
+    position: relative;    
     bottom: 0;
     height: 120px;
     margin-left: 250px;
@@ -109,6 +109,19 @@ body {
     transform: scale(1.05);
     transition: transform 0.3s ease-in-out;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Configuración principal - principal.html */
 
@@ -205,4 +218,189 @@ body {
 
 .padding-right-2rem {
     padding-right: 2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Configuración listado de personajes - personajes_list.html */
+
+.characters-container {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Filtros */
+.filters-section {
+    background-color: #1a1b1e;
+    border: 1px solid #4f4f4f;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.search-bar {
+    margin-bottom: 1.5rem;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid #FFFFFF1A;
+    background: #00000033;
+    color: white;
+    font-size: 1rem;
+}
+
+.filter-groups {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.filter-group h3 {
+    color: #a0a0a0;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.filter-options {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-options a {
+    text-decoration: none;
+}
+
+.filter-btn {
+    background: #00000033;
+    border: 1px solid #FFFFFF1A;
+    border-radius: 4px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.filter-btn.active-filter {
+    background: #FFFFFF1A;
+    border-color: #FFFFFF4C;
+}
+
+.filter-btn input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.clear-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+}
+
+.clear-btn span {
+    color: red;
+    font-size: 2rem;
+}
+
+/* Grid de personajes */
+.characters-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.character-link {
+    text-decoration: none;
+    display: contents;
+}
+
+.character-card {
+    width: 200px;
+    background: #4f4f4f33;
+    border-top-right-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.character-card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.character-image {
+    position: relative;
+    aspect-ratio: 1;
+}
+
+.character-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.character-icons {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.character-icons img {
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.character-info {
+    padding: 0.5rem;
+    text-align: center;
+    background: linear-gradient(to top, #b8db6b, transparent);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.character-info h3 {
+    color: white;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.rareza-indicator {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.25rem;
+}
+
+.rareza-indicator img {
+    height: 16px;
+    width: auto;
 }

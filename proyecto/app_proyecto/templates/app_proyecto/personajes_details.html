@@ -151,11 +151,13 @@
                 <h4>Sinergias</h4>
                 <div class="recommended-items">
                     {% for sinergia in sinergias %}
+                    <a href="{% url 'personajes_details' sinergia.pk %}">
                     <div class="item">
-                        {% with sinergia.imagenes_personaje.first as imagen %}
+                        {% with sinergia.imagenes_personaje.all.2 as imagen %}
                         <img src="{{ imagen.imagen.url }}" alt="{{ sinergia.nombre }}">
                         {% endwith %}
                     </div>
+                    </a>
                     {% endfor %}
                 </div>
             </div>

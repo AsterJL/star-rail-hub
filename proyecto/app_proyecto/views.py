@@ -53,6 +53,7 @@ class Personajes_Details (DetailView):
         contexto = super().get_context_data(**kwargs)
         personaje = self.object
 
+        # Precarga las habilidades del personaje y sus materiales asociados en una sola consulta. Así con todos.
         personaje.habilidades.prefetch_related('materiales')
         personaje.armas.prefetch_related('imagenes_arma')
         personaje.equipo.all()

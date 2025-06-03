@@ -1,7 +1,8 @@
 # settings/__init__.py
 import os
+from decouple import config
 
-ENV = os.getenv('DJANGO_ENV', 'local')  # Cambiar esta variable en producción
+ENV = config('DJANGO_ENV', default='local')  # Cambiar esta variable en producción
 
 if ENV == 'production':
     from .production import *

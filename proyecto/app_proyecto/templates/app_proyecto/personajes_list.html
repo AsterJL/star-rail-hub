@@ -16,8 +16,8 @@
                 <h3>Rareza</h3>
                 <div class="filter-options">
                     {% for rareza in rarezas|slice:":2" %} <!-- Se limita a recorrer los dos primeros parámetros -->
-                    <label class="filter-btn rareza-btn {% if request.GET.rareza == rareza.nombre %}active-filte    r{% endif %}">
-                        <input type="radio" name="rareza" value="{{ rareza.nombre }}" {% if request.GET.rareza == rareza.nombre %}che   cked{% endif %} onchange="this.form.submit()">
+                    <label class="filter-btn rareza-btn {% if request.GET.rareza == rareza.nombre %}active-filter{% endif %}">
+                        <input type="radio" name="rareza" value="{{ rareza.nombre }}" {% if request.GET.rareza == rareza.nombre %}checked{% endif %} onchange="this.form.submit()">
                         <img src="{{ rareza.imagen.url }}" alt="{{ rareza.nombre }}">
                     </label>
                     {% endfor %}

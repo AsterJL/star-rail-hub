@@ -110,6 +110,102 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
+/* Nueva implementación base.html */
+
+/* Botones Wiki / Uso */
+.toggle-section-base {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border-top: 1px solid #4f4f4f;
+    border-bottom: 1px solid #4f4f4f;
+    background-color: #1a1b1e;
+}
+
+.toggle-btn-base {
+    flex: 1;
+    padding: 0.5rem 0;
+    text-align: center;
+    background-color: #2a2b2e;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-btn-base:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.toggle-btn-base:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.toggle-btn-base:hover {
+    background-color: #3a3b3e;
+}
+
+.toggle-btn-base.active-toggle-btn-base {
+    background-color: #b8db6b;
+    color: #1a1b1e;
+}
+
+/* Sección inferior de login o usuario */
+.bottom-section {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid #4f4f4f;
+    background-color: #1a1b1e;
+    text-align: center;
+}
+
+.login-btn {
+    display: inline-block;
+    background-color: #b8db6b;
+    color: #1a1b1e;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: #cfe892;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.username {
+    font-weight: bold;
+    color: #b8db6b;
+}
+
+.logout-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #ff665a;
+}
+
 
 
 

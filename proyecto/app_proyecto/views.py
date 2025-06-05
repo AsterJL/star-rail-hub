@@ -92,6 +92,30 @@ class Armas_List (ListView):
     template_name = 'app_proyecto/armas_list.html'
     context_object_name = 'armas'
 
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+
+        contexto['rarezas'] = Rareza.objects.all()
+        contexto['funciones'] = Funcion.objects.all()
+
+        return contexto
+    
+    def get_queryset(self):
+        query = super().get_queryset()
+        
+        rareza = self.request.GET.get('rareza')
+        funcion = self.request.GET.get('funcion')
+        nombre = self.request.GET.get('nombreArma')
+
+        if rareza:
+            query = query.filter(rareza__nombre=rareza)
+        if funcion:
+            query = query.filter(funcion__nombre=funcion)
+        if nombre:
+            query = query.filter(nombre__icontains=nombre)
+
+        return query
+
 class Armas_Details (DetailView):
     model = Arma
     template_name = 'app_proyecto/armas_details.html'

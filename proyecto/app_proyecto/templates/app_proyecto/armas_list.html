@@ -2,6 +2,95 @@
 {% block titulo %}Armas{% endblock %}
 
 {% block contenido %}
-    <h1>Bienvenido</h1>
-    <p>Este es la página de Armas</p>
+<div class="characters-container">
+    <!-- Filtros -->
+    <form method="GET" class="filters-section">
+        <!-- Filtro de Nombre -->
+        <div class="search-bar">
+            <input type="text" name="nombreArma" placeholder="Buscar arma..." value="{{ request.GET.nombreArma|default:'' }}">
+        </div>
+        
+        <div class="filter-groups">
+            <!-- Filtro de Rareza -->
+            <div class="filter-group">
+                <h3>Rareza</h3>
+                <div class="filter-options">
+                    {% for rareza in rarezas|slice:":3" %} <!-- Se limita a recorrer los tres primeros parámetros -->
+                    <label class="filter-btn rareza-btn {% if request.GET.rareza == rareza.nombre %}active-filter{% endif %}">
+                        <input type="radio" name="rareza" value="{{ rareza.nombre }}" {% if request.GET.rareza == rareza.nombre %}checked{% endif %} onchange="this.form.submit()">
+                        <img src="{{ rareza.imagen.url }}" alt="{{ rareza.nombre }}">
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Filtro de Función -->
+            <div class="filter-group">
+                <h3>Función</h3>
+                <div class="filter-options">
+                    {% for funcion in funciones %}
+                    <label class="filter-btn funcion-btn {% if request.GET.funcion == funcion.nombre %}active-filter{% endif %}">
+                        <input type="radio" name="funcion" value="{{ funcion.nombre }}" {% if request.GET.funcion == funcion.nombre %}checked{% endif %} onchange="this.form.submit()">
+                        <img src="{{ funcion.imagen.url }}" alt="{{ funcion.nombre }}">
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Limpiar filtros -->
+            <div class="filter-group">
+                <h3>Limpiar</h3>
+                <div class="filter-options">
+                    <a href="{% url 'armas_list' %}" class="filter-btn clear-btn">
+                        <span>✕</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Grid de Armas -->
+    <div class="characters-grid">
+        {% for arma in armas %}
+        <!-- Carta de Arma -->
+        <a href="{% url 'armas_details' arma.pk %}" class="character-link">
+            <div class="character-card">
+                <div class="character-image">
+                    {% with arma.imagenes_arma.first as imagen %}
+                    <img src="{{ imagen.imagen.url }}" alt="{{ arma.nombre }}">
+                    {% endwith %}
+                    
+                    <!-- Icono de función -->
+                    <div class="character-icons">
+                        <img src="{{ arma.funcion.imagen.url }}" alt="{{ arma.funcion.nombre }}" class="funcion-icon">
+                    </div>
+                    
+                    <!-- Pie de carta -->
+                    <div class="character-info">
+                        <h3>{{ arma.nombre }}</h3>
+                        <div class="rareza-indicator">
+                            {% if arma.rareza.nombre == "5 estrellas" %}
+                            <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                            <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                            <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                            <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                            <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                            {% elif arma.rareza.nombre == "4 estrellas" %}
+                            <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                            <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                            <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                            <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                            {% else %}
+                            <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                            <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                            <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

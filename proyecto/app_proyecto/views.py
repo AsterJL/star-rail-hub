@@ -121,6 +121,18 @@ class Armas_Details (DetailView):
     template_name = 'app_proyecto/armas_details.html'
     context_object_name = 'armas'
 
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+        arma = self.object
+
+        # Precarga las habilidades de las armas y sus materiales asociados en una sola consulta. Así con todos.
+        arma.personajes_armas.prefetch_related('imagenes_personaje')
+
+        contexto['habilidades'] = arma.habilidad
+        contexto['personajes_recomendados'] = arma.personajes_armas.all()
+
+        return contexto
+
 class Armas_Create (CreateView):
     model = Arma
     template_name = 'app_proyecto/armas_create.html'

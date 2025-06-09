@@ -127,11 +127,13 @@
                 <h4>Armas Recomendadas</h4>
                 <div class="recommended-items">
                     {% for arma in armas_recomendadas %}
+                    <a href="{% url 'armas_details' arma.pk %}">
                     <div class="item">
                         {% with arma.imagenes_arma.first as imagen %}
                         <img src="{{ imagen.imagen.url }}" alt="{{ arma.nombre }}">
                         {% endwith %}
                     </div>
+                    </a>
                     {% endfor %}
                 </div>
             </div>

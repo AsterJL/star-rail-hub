@@ -146,6 +146,16 @@ class Equipo_List (ListView):
     model = Equipo
     template_name = 'app_proyecto/equipo_list.html'
     context_object_name = 'equipos'
+    
+    def get_queryset(self):
+        query = super().get_queryset()
+        
+        nombre = self.request.GET.get('nombreArma')
+
+        if nombre:
+            query = query.filter(nombre__icontains=nombre)
+
+        return query
 
 class Equipo_Details (DetailView):
     model = Equipo

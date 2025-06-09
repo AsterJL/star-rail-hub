@@ -476,7 +476,7 @@ body {
     border-radius: 4px;
 }
 
-.character-info {
+.character-info-five {
     padding: 0.5rem;
     text-align: center;
     background: linear-gradient(to top, #b8db6b, transparent);
@@ -486,7 +486,39 @@ body {
     right: 0;
 }
 
-.character-info h3 {
+.character-info-five h3 {
+    color: white;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.character-info-four {
+    padding: 0.5rem;
+    text-align: center;
+    background: linear-gradient(to top, #9b59b6, transparent);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.character-info-four h3 {
+    color: white;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.character-info-three {
+    padding: 0.5rem;
+    text-align: center;
+    background: linear-gradient(to top, #5dade2, transparent);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.character-info-three h3 {
     color: white;
     margin: 0;
     font-size: 1rem;

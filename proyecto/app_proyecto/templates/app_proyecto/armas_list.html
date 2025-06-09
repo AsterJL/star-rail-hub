@@ -66,7 +66,7 @@
                     </div>
                     
                     <!-- Pie de carta -->
-                    <div class="character-info">
+                    <div class="{% if arma.rareza.nombre == '5 estrellas' %}character-info-five{% elif arma.rareza.nombre == '4 estrellas' %}character-info-four{% else %}character-info-three{% endif %}">
                         <h3>{{ arma.nombre }}</h3>
                         <div class="rareza-indicator">
                             {% if arma.rareza.nombre == "5 estrellas" %}

@@ -80,7 +80,7 @@
                     </div>
                     
                     <!-- Pie de carta -->
-                    <div class="character-info">
+                    <div class="{% if personaje.rareza.nombre == '5 estrellas' %}character-info-five{% else %}character-info-four{% endif %}">
                         <h3>{{ personaje.nombre }}</h3>
                         <div class="rareza-indicator">
                             {% if personaje.rareza.nombre == "5 estrellas" %}

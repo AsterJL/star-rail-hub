@@ -326,7 +326,7 @@ body {
 
 
 
-/* Configuración listados - personajes_list.html, armas_list.html */
+/* Configuración listados - personajes_list.html */
 
 .characters-container {
     padding: 2rem;
@@ -1008,4 +1008,93 @@ body {
     object-fit: contain;
     margin-bottom: 5px;
     border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* enciclopedia.html */
+
+.div-main-enciclopedia {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto; /* centra horizontalmente */
+    padding: 2rem;
+    background-color: #1a1b1e80;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #4f4f4f;
+    border-radius: 10px;
+}
+
+.div-main-enciclopedia p {
+    width: 100%;
+    max-width: 800px;
+    text-align: justify;
+}
+
+.div-main-enciclopedia h4 {
+    font-weight: bold;
+}
+
+.div-main-enciclopedia h4.h4-distinct {
+    color: #b8db6b;
+}
+
+/* Grid (si quieres varias secciones debajo, deja una sola grid) */
+.enciclopedia-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 90%;
+}
+
+/* Tarjetas que se adaptan al ancho del padre */
+.enciclopedia-card {
+    display: flex;
+    align-items: center;
+    background-color: #4f4f4f33;
+    border: 2px solid #4f4f4f;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: left;
+    transition: transform 0.3s ease-in-out;
+    width: 100%;
+    max-width: 90vw;
+    box-sizing: border-box;
+}
+
+.enciclopedia-card a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    width: 100%;
+}
+
+.enciclopedia-card:hover {
+    border: 2px solid #e1e1e1;
+    transform: scale(1.05);
+}
+
+.enciclopedia-logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 2rem;
+}
+
+.enciclopedia-card h3 {
+    margin: 0;
+    font-size: 1.5rem;
 }

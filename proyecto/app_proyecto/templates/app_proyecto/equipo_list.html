@@ -2,6 +2,56 @@
 {% block titulo %}Equipo{% endblock %}
 
 {% block contenido %}
-    <h1>Bienvenido</h1>
-    <p>Este es la página de Equipo</p>
+<div class="characters-container">
+    <!-- Filtros -->
+    <form method="GET" class="filters-section">
+        <!-- Filtro de Nombre -->
+        <div class="search-bar">
+            <input type="text" name="nombreEquipo" placeholder="Buscar equipo..." value="{{ request.GET.nombreEquipo|default:'' }}">
+        </div>
+        
+        <div class="filter-groups">
+            <!-- Filtro de Tipo -->
+            <div class="filter-group">
+                <h3>Tipo</h3>
+                <div class="filter-options">
+                    {% for tipo in tipos_equipo %}
+                    <label class="filter-btn rareza-btn {% if request.GET.tipoEquipo == tipo %}active-filter{% endif %}">
+                        <input type="radio" name="tipoEquipo" value="{{ tipo }}" {% if request.GET.tipoEquipo == tipo %}checked{% endif %} onchange="this.form.submit()">
+                        <span>{{ tipo }}</span>
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Limpiar filtros -->
+            <div class="filter-group">
+                <h3>Limpiar</h3>
+                <div class="filter-options">
+                    <a href="{% url 'equipo_list' %}" class="filter-btn clear-btn">
+                        <span>✕</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Grid de Equipos -->
+    <div class="characters-grid">
+        {% for equipo in equipos %}
+        <!-- Carta de Equipo -->
+        <a href="{% url 'equipo_details' equipo.pk %}" class="character-link">
+            <div class="equipo-card">
+                <div class="equipo-image">
+                    <img src="{{ equipo.imagen.url }}" alt="{{ equipo.nombre }}">
+                    <!-- Pie de carta -->
+                    <div class="equipo-info">
+                        <h3>{{ equipo.nombre }}</h3>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

@@ -326,7 +326,7 @@ body {
 
 
 
-/* Configuración listado de personajes - personajes_list.html */
+/* Configuración listados - personajes_list.html, armas_list.html */
 
 .characters-container {
     padding: 2rem;
@@ -535,6 +535,194 @@ body {
     width: auto;
 }
 
+/* equipo_list.html */
+
+.equipo-card {
+    width: 200px;
+    background: linear-gradient(to top, #b8db6b, #1a1a1a);
+    border-top-right-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.equipo-card:hover {
+    border: 2px solid #e1e1e1;
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.equipo-image {
+    position: relative;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding-top: 10px;
+}
+
+.equipo-image img {
+    width: 70%;
+    height: 70%;
+}
+
+.equipo-info {
+    padding: 0.5rem;
+    text-align: center;
+    background: linear-gradient(#1a1a1a);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.equipo-info h3 {
+    color: white;
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* materiales_list.html */
+
+.material-card-estilo-five {
+    width: 120px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(to top, #b8db6b, #1a1a1a);
+    border-top-right-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.material-card-estilo-five:hover {
+    border: 2px solid #e1e1e1;
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.material-card-estilo-four {
+    width: 120px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(to top, #9b59b6, #1a1a1a);
+    border-top-right-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.material-card-estilo-four:hover {
+    border: 2px solid #e1e1e1;
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.material-card-estilo-three {
+    width: 120px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(to top, #5dade2, #1a1a1a);
+    border-top-right-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.material-card-estilo-three:hover {
+    border: 2px solid #e1e1e1;
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.material-card-estilo-two {
+    width: 120px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(to top, #a2e6a2, #1a1a1a);
+    border-top-right-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.material-card-estilo-two:hover {
+    border: 2px solid #e1e1e1;
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.material-card-estilo-one {
+    width: 120px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(to top, #e6e6fa, #1a1a1a);
+    border-top-right-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.material-card-estilo-one:hover {
+    border: 2px solid #e1e1e1;
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.material-card-image {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding-top: 10px;
+}
+
+.material-card-image img {
+    width: 70%;
+    height: 70%;
+}
+
+.material-card-info {
+    padding: 0.5rem;
+    text-align: center;
+    background: linear-gradient(#1a1a1a);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.material-card-info h3 {
+    color: white;
+    margin: 0;
+    font-size: 0.8rem;
+}
 
 
 
@@ -546,7 +734,15 @@ body {
 
 
 
-/* Configuración detalles de personajes - personajes_details.html */
+
+
+
+
+
+
+
+
+/* Configuración detalles - personajes_details.html, armas_details.html */
 
 .character-details {
     max-width: 1200px;

@@ -2,6 +2,56 @@
 {% block titulo %}Materiales{% endblock %}
 
 {% block contenido %}
-    <h1>Bienvenido</h1>
-    <p>Este es la página de Materiales</p>
+<div class="characters-container">
+    <!-- Filtros -->
+    <form method="GET" class="filters-section">
+        <!-- Filtro de Nombre -->
+        <div class="search-bar">
+            <input type="text" name="nombreMaterial" placeholder="Buscar material..." value="{{ request.GET.nombreMaterial|default:'' }}">
+        </div>
+        
+        <div class="filter-groups">
+            <!-- Filtro de Rareza -->
+            <div class="filter-group">
+                <h3>Rareza</h3>
+                <div class="filter-options">
+                    {% for rareza in rarezas %}
+                    <label class="filter-btn rareza-btn {% if request.GET.rareza == rareza.nombre %}active-filter{% endif %}">
+                        <input type="radio" name="rareza" value="{{ rareza.nombre }}" {% if request.GET.rareza == rareza.nombre %}checked{% endif %} onchange="this.form.submit()">
+                        <img src="{{ rareza.imagen.url }}" alt="{{ rareza.nombre }}">
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Limpiar filtros -->
+            <div class="filter-group">
+                <h3>Limpiar</h3>
+                <div class="filter-options">
+                    <a href="{% url 'materiales_list' %}" class="filter-btn clear-btn">
+                        <span>✕</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Grid de Materiales -->
+    <div class="characters-grid">
+        {% for material in materiales %}
+        <!-- Carta de Material -->
+        <a href="{% url 'materiales_details' material.pk %}" class="character-link">
+            <div class="{% if material.rareza.nombre == '5 estrellas' %}material-card-estilo-five{% elif material.rareza.nombre == '4 estrellas' %}material-card-estilo-four{% elif material.rareza.nombre == '3 estrellas' %}material-card-estilo-three{% elif material.rareza.nombre == '2 estrellas' %}material-card-estilo-two{% else %}material-card-estilo-one{% endif %}">
+                <div class="material-card-image">
+                    <img src="{{ material.imagen.url }}" alt="{{ material.nombre }}">
+                    <!-- Pie de carta -->
+                    <div class="material-card-info">
+                        <h3>{{ material.nombre }}</h3>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

@@ -158,12 +158,22 @@ class Equipo_List (ListView):
     model = Equipo
     template_name = 'app_proyecto/equipo_list.html'
     context_object_name = 'equipos'
+
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+
+        contexto['tipos_equipo'] = ['Principal', 'Secundario']
+
+        return contexto
     
     def get_queryset(self):
         query = super().get_queryset()
         
-        nombre = self.request.GET.get('nombreArma')
+        tipo = self.request.GET.get('tipoEquipo')
+        nombre = self.request.GET.get('nombreEquipo')
 
+        if tipo:
+            query = query.filter(tipo__icontains=tipo)
         if nombre:
             query = query.filter(nombre__icontains=nombre)
 
@@ -180,6 +190,26 @@ class Materiales_List (ListView):
     model = Material
     template_name = 'app_proyecto/materiales_list.html'
     context_object_name = 'materiales'
+
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+
+        contexto['rarezas'] = Rareza.objects.all()
+
+        return contexto
+    
+    def get_queryset(self):
+        query = super().get_queryset()
+        
+        rareza = self.request.GET.get('rareza')
+        nombre = self.request.GET.get('nombreMaterial')
+
+        if rareza:
+            query = query.filter(rareza__nombre=rareza)
+        if nombre:
+            query = query.filter(nombre__icontains=nombre)
+
+        return query
 
 class Materiales_Details (DetailView):
     model = Material

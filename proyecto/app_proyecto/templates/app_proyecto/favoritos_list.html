@@ -1,0 +1,24 @@
+{% extends 'app_proyecto/base.html' %}
+{% block titulo %}Favoritos{% endblock %}
+
+{% block contenido %}
+<div class="favoritos-header">
+    <h1>Favoritos</h1>
+    <a href="{% url 'favoritos_add' %}" class="login-btn float-end">Añadir</a>
+</div>
+
+<div class="characters-grid">
+  {% for favorito in favoritos %}
+    <a href="{% url 'personajes_details' favorito.personaje.pk %}" class="character-link">
+      <div class="character-card">
+        <div class="character-image">
+          <img src="{{ favorito.personaje.imagenes_personaje.first.imagen.url }}" alt="{{ favorito.personaje.nombre }}">
+        </div>
+        <div class="character-info-{{ favorito.personaje.rareza.nombre|length }}">
+          <h3>{{ favorito.personaje.nombre }}</h3>
+        </div>
+      </div>
+    </a>
+  {% endfor %}
+</div>
+{% endblock %}

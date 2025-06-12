@@ -1,0 +1,42 @@
+{% extends 'app_proyecto/base.html' %}
+{% block titulo %}Favoritos - Add{% endblock %}
+
+{% block contenido %}
+<h1>Añadir a Favoritos</h1>
+<form method="post">
+  {% csrf_token %}
+  <div class="characters-grid">
+    {% for personaje in personajes %}
+      <label class="character-card">
+        <input type="checkbox" name="personajes_ids" value="{{ personaje.id }}" style="display:none;">
+        <div class="character-image">
+          <img src="{{ personaje.imagenes_personaje.first.imagen.url }}" alt="{{ personaje.nombre }}">
+        </div>
+        <div class="character-info-{{ personaje.rareza.nombre|length }}">
+          <h3>{{ personaje.nombre }}</h3>
+        </div>
+      </label>
+    {% endfor %}
+  </div>
+  <button type="submit" class="btn btn-primary" style="position:fixed; bottom:30px; right:30px;">Finalizar</button>
+</form>
+
+<script>
+  // Marcar visualmente las cartas seleccionadas
+  document.querySelectorAll('label.character-card').forEach(label => {
+    label.addEventListener('click', function (e) {
+      e.preventDefault();
+      const input = this.querySelector('input[type="checkbox"]');
+      input.checked = !input.checked;
+      this.classList.toggle('selected', input.checked);
+    });
+  });
+</script>
+
+<style>
+  label.character-card.selected {
+    border: 2px solid #b8db6b;
+    transform: scale(1.05);
+  }
+</style>
+{% endblock %}

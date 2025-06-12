@@ -68,7 +68,7 @@
                     <span class="material-icons">inventory_2</span>
                     <span class="span-text">Inventario</span>
                 </a>
-                <a href="#" class="nav-item {% if request.resolver_match.url_name == 'user_favoritos' %}active{% endif %}">
+                <a href="{% url 'favoritos_list' %}" class="nav-item {% if request.resolver_match.url_name == 'user_favoritos' %}active{% endif %}">
                     <span class="material-icons">star</span>
                     <span class="span-text">Favoritos</span>
                 </a>
@@ -88,7 +88,7 @@
                     <span class="username">{{ user.username }}</span>
                     <form method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
-                        <button type="submit" class="logout-btn">Logout</button>
+                        <button type="submit" class="logout-btn">Cerrar Sesión</button>
                     </form>
                 </div>
             {% else %}
@@ -97,23 +97,27 @@
         </div>
     </aside>
 
-    <!-- Contenido principal -->
-    <main class="main-content">
-        {% block contenido %}{% endblock %}
-    </main>
+    <div class="page-container">
 
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="float-left">
-            <p>Star Rail Hub es una base de datos hecha para un trabajo sobre el juego Honkai: Star Rail</p>
-            <p>Esta web no está afiliada con Hoyoverse y todos los elementos usados del juego son de su propiedad.</p>
-        </div>
-        <div class="float-right">
-            <a href="https://jcfp-port1.web.app">
-                <img src="https://jcfp-port1.web.app/media/images/JL.jpeg" alt="JL Logo" class="site-footer-logo">
-            </a>
-        </div>
-    </footer>
+        <!-- Contenido principal -->
+        <main class="main-content">
+            {% block contenido %}{% endblock %}
+        </main>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="float-left">
+                <p>Star Rail Hub es una base de datos hecha para un trabajo sobre el juego Honkai: Star Rail</p>
+                <p>Esta web no está afiliada con Hoyoverse y todos los elementos usados del juego son de su propiedad.</p>
+            </div>
+            <div class="float-right">
+                <a href="https://jcfp-port1.web.app">
+                    <img src="https://jcfp-port1.web.app/media/images/JL.jpeg" alt="JL Logo" class="site-footer-logo">
+                </a>
+            </div>
+        </footer>
+
+    </div>
 
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

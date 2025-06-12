@@ -258,3 +258,15 @@ class ImagenPersonaje(models.Model):
 
     def __str__(self):
         return f"Imagen del Personaje: {self.nombre}"
+
+class Favorito(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='favoritos')
+    personaje = models.ForeignKey(Personaje, on_delete=models.CASCADE, related_name='favorito_de')
+
+    class Meta:
+        verbose_name = 'Favorito'
+        verbose_name_plural = 'Favoritos'
+        unique_together = ('usuario', 'personaje')  # Evita duplicados
+
+    def __str__(self):
+        return f"{self.usuario.username} - {self.personaje.nombre}"

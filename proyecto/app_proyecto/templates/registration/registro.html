@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<div class="login-container">
+    <h1>Crear una cuenta</h1>
+
+    {% if form.errors %}
+        <div class="login-error">
+            <p>Por favor, corrige los siguientes errores:</p>
+            {{ form.errors }}
+        </div>
+    {% endif %}
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+    
+        <div class="form-group-registro">
+            <label for="id_username">Nombre de usuario</label>
+            <input type="text" name="username" maxlength="150" required id="id_username" value="{{ form.username.value|default:'' }}">
+        </div>
+    
+        <div class="form-group-registro">
+            <label for="id_password1">Contraseña</label>
+            <input type="password" name="password1" required id="id_password1">
+            <ul class="password-hints" id="password-requirements">
+                <li id="req-length">Entre 8 y 32 caracteres</li>
+                <li id="req-upper">Al menos una letra mayúscula</li>
+                <li id="req-lower">Al menos una letra minúscula</li>
+                <li id="req-symbol">Al menos un número o carácter especial</li>
+            </ul>
+        </div>
+    
+        <div class="form-group-registro">
+            <label for="id_password2">Repetir contraseña</label>
+            <input type="password" name="password2" required id="id_password2">
+        </div>
+    
+        <button type="submit">Registrarse</button>
+    </form>
+
+    <div class="login-register-text">
+        ¿Ya tienes una cuenta?
+        <a href="{% url 'login' %}">Iniciar sesión</a>
+    </div>
+</div>
+
+<script>
+    const passwordInput = document.getElementById('id_password1');
+
+    const reqLength = document.getElementById('req-length');
+    const reqUpper = document.getElementById('req-upper');
+    const reqLower = document.getElementById('req-lower');
+    const reqSymbol = document.getElementById('req-symbol');
+
+    passwordInput.addEventListener('input', () => {
+        const pwd = passwordInput.value;
+
+        // Longitud entre 8 y 32
+        if (pwd.length >= 8 && pwd.length <= 32) {
+            reqLength.classList.add('valid');
+        } else {
+            reqLength.classList.remove('valid');
+        }
+
+        // Al menos una mayúscula
+        if (/[A-Z]/.test(pwd)) {
+            reqUpper.classList.add('valid');
+        } else {
+            reqUpper.classList.remove('valid');
+        }
+
+        // Al menos una minúscula
+        if (/[a-z]/.test(pwd)) {
+            reqLower.classList.add('valid');
+        } else {
+            reqLower.classList.remove('valid');
+        }
+
+        // Al menos un número o símbolo
+        if (/[0-9!@#$%^&*(),.?":{}|<>]/.test(pwd)) {
+            reqSymbol.classList.add('valid');
+        } else {
+            reqSymbol.classList.remove('valid');
+        }
+    });
+</script>
+</body>
+</html>

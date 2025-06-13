@@ -2,7 +2,18 @@
 {% block titulo %}Favoritos - Add{% endblock %}
 
 {% block contenido %}
-<h1>Añadir a Favoritos</h1>
+<div class="favoritos-header">
+    <h1>Añadir a Favoritos</h1>
+</div>
+
+<!-- Filtros -->
+<form method="GET">
+    <!-- Filtro de Nombre -->
+    <div class="search-bar">
+        <input type="text" name="nombrePersonaje" placeholder="Buscar personaje..." value="{{ request.GET.nombrePersonaje|default:'' }}">
+    </div>
+</form>
+
 <form method="post">
   {% csrf_token %}
   <div class="characters-grid">
@@ -10,19 +21,43 @@
       <label class="character-card">
         <input type="checkbox" name="personajes_ids" value="{{ personaje.id }}" style="display:none;">
         <div class="character-image">
-          <img src="{{ personaje.imagenes_personaje.first.imagen.url }}" alt="{{ personaje.nombre }}">
-        </div>
-        <div class="character-info-{{ personaje.rareza.nombre|length }}">
-          <h3>{{ personaje.nombre }}</h3>
+            {% with personaje.imagenes_personaje.first as imagen %}
+            <img src="{{ imagen.imagen.url }}" alt="{{ personaje.nombre }}">
+            {% endwith %}
+
+            <!-- Iconos de elemento y función -->
+            <div class="character-icons">
+                <img src="{{ personaje.elemento.imagen.url }}" alt="{{ personaje.elemento.nombre }}" class="elemento-icon">
+                <img src="{{ personaje.funcion.imagen.url }}" alt="{{ personaje.funcion.nombre }}" class="funcion-icon">
+            </div>
+
+            <!-- Pie de carta -->
+            <div class="{% if personaje.rareza.nombre == '5 estrellas' %}character-info-five{% else %}character-info-four{% endif %}">
+                <h3>{{ personaje.nombre }}</h3>
+                <div class="rareza-indicator">
+                    {% if personaje.rareza.nombre == "5 estrellas" %}
+                    <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                    <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                    <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                    <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                    <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                    {% else %}
+                    <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                    <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                    <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                    <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                    {% endif %}
+                </div>
+            </div>
         </div>
       </label>
     {% endfor %}
   </div>
-  <button type="submit" class="btn btn-primary" style="position:fixed; bottom:30px; right:30px;">Finalizar</button>
+  <button type="submit" class="favoritos-add-btn" style="position: fixed; top:60px; right:60px;">Finalizar</button>
 </form>
 
 <script>
-  // Marcar visualmente las cartas seleccionadas
+  // Para marcar las cartas seleccionadas
   document.querySelectorAll('label.character-card').forEach(label => {
     label.addEventListener('click', function (e) {
       e.preventDefault();

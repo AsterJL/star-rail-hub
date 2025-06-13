@@ -4,6 +4,7 @@ from django.views.generic import View, ListView, DetailView, UpdateView, DeleteV
 from django.urls import reverse_lazy
 from django.db.models import Prefetch # Importamos esto para reducir el número de queries y mejorar así el rendimiento.
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 
@@ -361,3 +362,12 @@ class Favoritos_Delete(LoginRequiredMixin, DeleteView):
         return Favorito.objects.filter(usuario=self.request.user)
 
 # OTROS USUARIOS
+
+
+
+# REGISTRO
+
+class RegistroView(CreateView):
+    form_class = UserCreationForm
+    template_name = 'registration/registro.html'
+    success_url = reverse_lazy('login')

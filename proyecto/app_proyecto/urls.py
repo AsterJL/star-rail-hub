@@ -44,4 +44,6 @@ urlpatterns=[
     path('favoritos/', Favoritos_List.as_view(), name='favoritos_list'),
     path('favoritos/add/', Favoritos_Add.as_view(), name='favoritos_add'),
     path('favoritos/delete/<int:pk>/', Favoritos_Delete.as_view(), name='favoritos_delete'),
+
+    path('registro/', RegistroView.as_view(), name='registro'),
 ]

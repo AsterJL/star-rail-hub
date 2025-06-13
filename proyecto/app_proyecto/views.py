@@ -283,10 +283,6 @@ def enciclopedia (request):
 #     template_name = 'app_proyecto/funciones_details.html'
 #     context_object_name = 'funciones'
 
-# INVENTARIO
-
-
-
 # FAVORITOS
 
 class Favoritos_List(LoginRequiredMixin, ListView):
@@ -360,6 +356,80 @@ class Favoritos_Delete(LoginRequiredMixin, DeleteView):
 
     def get_queryset(self):
         return Favorito.objects.filter(usuario=self.request.user)
+    
+# INVENTARIO
+
+class InventarioListView(LoginRequiredMixin, ListView):
+    model = Inventario
+    template_name = 'app_proyecto/inventario_list.html'
+    context_object_name = 'inventarios'
+
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+        inventarios = contexto['inventarios']
+
+        def get_pieza(equipo, tipo):
+            if equipo:
+                return equipo.piezas_equipo.filter(tipo=tipo).first()
+            return None
+
+        for inv in inventarios:
+            inv.casco = get_pieza(inv.equipo_principal, "Casco")
+            inv.manos = get_pieza(inv.equipo_principal, "Manos")
+            inv.pecho = get_pieza(inv.equipo_principal, "Pecho")
+            inv.botas = get_pieza(inv.equipo_principal, "Botas")
+            inv.orbe = get_pieza(inv.equipo_secundario, "Orbe")
+            inv.cuerda = get_pieza(inv.equipo_secundario, "Cuerda")
+
+        return contexto
+
+    def get_queryset(self):
+        query = Inventario.objects.filter(usuario=self.request.user).select_related(
+            'personaje', 'arma', 'equipo_principal', 'equipo_secundario'
+        ).prefetch_related(
+            'personaje__imagenes_personaje',
+            'arma__imagenes_arma',
+            'equipo_principal__piezas_equipo',
+            'equipo_secundario__piezas_equipo',
+        )
+
+        nombre = self.request.GET.get('nombrePersonaje')
+        if nombre:
+            query = query.filter(personaje__nombre__icontains=nombre)
+            
+        return query
+    
+class InventarioCreateView(LoginRequiredMixin, CreateView):
+    model = Inventario
+    template_name = 'app_proyecto/inventario_add.html'
+    fields = []
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['personajes'] = Personaje.objects.prefetch_related('imagenes_personaje').all()
+        context['armas'] = Arma.objects.prefetch_related('imagenes_arma').all()
+        context['equipos_principales'] = Equipo.objects.filter(tipo='Principal')
+        context['equipos_secundarios'] = Equipo.objects.filter(tipo='Secundario')
+        return context
+
+    def post(self, request, *args, **kwargs):
+        personaje_id = request.POST.get('personaje_id')
+        arma_id = request.POST.get('arma_id')
+        eq_principal_id = request.POST.get('equipo_principal_id')
+        eq_secundario_id = request.POST.get('equipo_secundario_id')
+
+        if not personaje_id:
+            return redirect('inventario_list')
+
+        inventario = Inventario(
+            usuario=request.user,
+            personaje_id=personaje_id,
+            arma_id=arma_id if arma_id else None,
+            equipo_principal_id=eq_principal_id if eq_principal_id else None,
+            equipo_secundario_id=eq_secundario_id if eq_secundario_id else None,
+        )
+        inventario.save()
+        return redirect('inventario_list')
 
 # OTROS USUARIOS
 

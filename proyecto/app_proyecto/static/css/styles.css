@@ -208,6 +208,7 @@ body {
     font-size: 0.85rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 .logout-btn:hover {
@@ -1330,4 +1331,112 @@ body {
 .clear-fav-btn:hover {
     background-color: #e74c3c;
     border-color: #e74c3c;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* inventario.html */
+
+.inventario-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.inventario-card {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    align-items: center;
+    padding: 1rem;
+    background-color: #1a1a1a;
+    border: 2px solid #4f4f4f;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.inventario-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #2a2b2e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.inventario-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.inventario-card-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.inventario-card .btn-edit,
+.inventario-card .btn-delete {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    width: 80px;
+    text-decoration: none;
+}
+
+.btn-edit {
+    background-color: #b8db6b;
+    color: #1a1b1e;
+    font-weight: bold;
+}
+
+.btn-edit:hover {
+    background-color: #5dade2;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-delete:hover {
+    background-color: #ff665a;
+}
+
+.inventario-add-btn {
+    display: inline-block;
+    background-color: #b8db6b;
+    color: #1a1b1e;
+    padding: 1rem 4rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.inventario-add-btn:hover {
+    background-color: #cfe892;
 }

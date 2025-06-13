@@ -258,6 +258,8 @@ class ImagenPersonaje(models.Model):
 
     def __str__(self):
         return f"Imagen del Personaje: {self.nombre}"
+    
+# FAVORITOS
 
 class Favorito(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='favoritos')
@@ -267,6 +269,23 @@ class Favorito(models.Model):
         verbose_name = 'Favorito'
         verbose_name_plural = 'Favoritos'
         unique_together = ('usuario', 'personaje')  # Evita duplicados
+
+    def __str__(self):
+        return f"{self.usuario.username} - {self.personaje.nombre}"
+    
+# INVENTARIO
+
+class Inventario(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    personaje = models.ForeignKey(Personaje, on_delete=models.CASCADE)
+    arma = models.ForeignKey(Arma, on_delete=models.SET_NULL, null=True, blank=True)
+    equipo_principal = models.ForeignKey(Equipo, on_delete=models.SET_NULL, null=True, blank=True, related_name='inventario_principal')
+    equipo_secundario = models.ForeignKey(Equipo, on_delete=models.SET_NULL, null=True, blank=True, related_name='inventario_secundario')
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Item Inventario'
+        verbose_name_plural = 'Items Inventario'
 
     def __str__(self):
         return f"{self.usuario.username} - {self.personaje.nombre}"

@@ -1,0 +1,201 @@
+{% extends 'app_proyecto/base.html' %}
+{% block titulo %}Añadir a Inventario{% endblock %}
+
+{% block contenido %}
+<div class="favoritos-header">
+    <h1>Añadir a Inventario</h1>
+    <a href="{% url 'inventario_list' %}" class="favoritos-add-btn">Volver</a>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+
+    <!-- ELEGIR PERSONAJE -->
+    <h2>Elegir Personaje</h2>
+    <div class="search-bar">
+        <input type="text" id="filter-personaje" placeholder="Buscar personaje...">
+    </div>
+    <div class="characters-grid" id="grid-personaje">
+        {% for personaje in personajes %}
+        <!-- Carta de Personaje -->
+        <label class="character-card single-select" data-group="personaje">
+            <input type="radio" name="personaje_id" value="{{ personaje.id }}" hidden>
+            <div class="character-image">
+                {% with personaje.imagenes_personaje.first as imagen %}
+                <img src="{{ imagen.imagen.url }}" alt="{{ personaje.nombre }}">
+                {% endwith %}
+
+                <!-- Iconos de elemento y función -->
+                <div class="character-icons">
+                    <img src="{{ personaje.elemento.imagen.url }}" alt="{{ personaje.elemento.nombre }}" class="elemento-icon">
+                    <img src="{{ personaje.funcion.imagen.url }}" alt="{{ personaje.funcion.nombre }}" class="funcion-icon">
+                </div>
+
+                <!-- Pie de carta -->
+                <div class="{% if personaje.rareza.nombre == '5 estrellas' %}character-info-five{% else %}character-info-four{% endif %}">
+                    <h3>{{ personaje.nombre }}</h3>
+                    <div class="rareza-indicator">
+                        {% if personaje.rareza.nombre == "5 estrellas" %}
+                        <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                        <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                        <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                        <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                        <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                        {% else %}
+                        <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                        <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                        <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                        <img src="{{ personaje.rareza.imagen.url }}" alt="{{ personaje.rareza.nombre }}">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </label>
+        {% endfor %}
+    </div>
+
+    <br><br>
+
+    <!-- ELEGIR ARMA -->
+    <h2>Elegir Arma</h2>
+    <div class="search-bar">
+        <input type="text" id="filter-arma" placeholder="Buscar arma...">
+    </div>
+    <div class="characters-grid" id="grid-arma">
+        {% for arma in armas %}
+        <!-- Carta de Arma -->
+        <label class="character-card single-select" data-group="arma">
+            <input type="radio" name="arma_id" value="{{ arma.id }}" hidden>
+            <div class="character-image">
+                {% with arma.imagenes_arma.first as imagen %}
+                <img src="{{ imagen.imagen.url }}" alt="{{ arma.nombre }}">
+                {% endwith %}
+
+                <!-- Icono de función -->
+                <div class="character-icons">
+                    <img src="{{ arma.funcion.imagen.url }}" alt="{{ arma.funcion.nombre }}" class="funcion-icon">
+                </div>
+
+                <!-- Pie de carta -->
+                <div class="{% if arma.rareza.nombre == '5 estrellas' %}character-info-five{% elif arma.rareza.nombre == '4 estrellas' %}character-info-four{% else %}character-info-three{% endif %}">
+                    <h3>{{ arma.nombre }}</h3>
+                    <div class="rareza-indicator">
+                        {% if arma.rareza.nombre == "5 estrellas" %}
+                        <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                        <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                        <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                        <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                        <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                        {% elif arma.rareza.nombre == "4 estrellas" %}
+                        <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                        <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                        <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                        <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                        {% else %}
+                        <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                        <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                        <img src="{{ arma.rareza.imagen.url }}" alt="{{ arma.rareza.nombre }}">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </label>
+        {% endfor %}
+    </div>
+
+    <br><br>
+
+    <!-- ELEGIR EQUIPO PRINCIPAL -->
+    <h2>Elegir Set Principal</h2>
+    <div class="search-bar">
+        <input type="text" id="filter-principal" placeholder="Buscar set principal...">
+    </div>
+    <div class="characters-grid" id="grid-principal">
+        {% for equipo in equipos_principales %}
+        <!-- Carta de Equipo -->
+        <label class="equipo-card single-select" data-group="equipo_principal">
+            <input type="radio" name="equipo_principal_id" value="{{ equipo.id }}" hidden>
+            <div class="equipo-image">
+                <img src="{{ equipo.imagen.url }}" alt="{{ equipo.nombre }}">
+                <!-- Pie de carta -->
+                <div class="equipo-info">
+                    <h3>{{ equipo.nombre }}</h3>
+                </div>
+            </div>
+        </label>
+        {% endfor %}
+    </div>
+
+    <br><br>
+
+    <!-- ELEGIR EQUIPO SECUNDARIO -->
+    <h2>Elegir Set Secundario</h2>
+    <div class="search-bar">
+        <input type="text" id="filter-secundario" placeholder="Buscar set secundario...">
+    </div>
+    <div class="characters-grid" id="grid-secundario">
+        {% for equipo in equipos_secundarios %}
+        <!-- Carta de Equipo -->
+        <label class="equipo-card single-select" data-group="equipo_secundario">
+            <input type="radio" name="equipo_secundario_id" value="{{ equipo.id }}" hidden>
+            <div class="equipo-image">
+                <img src="{{ equipo.imagen.url }}" alt="{{ equipo.nombre }}">
+                <!-- Pie de carta -->
+                <div class="equipo-info">
+                    <h3>{{ equipo.nombre }}</h3>
+                </div>
+            </div>
+        </label>
+        {% endfor %}
+    </div>
+
+    <br><br>
+
+    <!-- FINALIZAR -->
+    <div style="text-align: center; margin-top: 2rem;">
+        <button type="submit" class="inventario-add-btn">Finalizar</button>
+    </div>
+</form>
+
+<script>
+    // Que solo pueda haber un objeto marcado de cada tipo
+    document.querySelectorAll('.single-select').forEach(label => {
+        label.addEventListener('click', function () {
+            const group = this.getAttribute('data-group');
+            document.querySelectorAll(`.single-select[data-group="${group}"]`).forEach(el => {
+                el.classList.remove('selected');
+                el.querySelector('input').checked = false;
+            });
+            this.classList.add('selected');
+            this.querySelector('input').checked = true;
+        });
+    });
+
+    // Filtros (personaje, arma, set)
+    const filters = {
+        'personaje': 'filter-personaje',
+        'arma': 'filter-arma',
+        'equipo_principal': 'filter-principal',
+        'equipo_secundario': 'filter-secundario'
+    };
+
+    for (const [group, inputId] of Object.entries(filters)) {
+        const input = document.getElementById(inputId);
+        input.addEventListener('input', () => {
+            const term = input.value.toLowerCase();
+            document.querySelectorAll(`.single-select[data-group="${group}"]`).forEach(el => {
+                const name = el.querySelector('h3').textContent.toLowerCase();
+                el.style.display = name.includes(term) ? 'block' : 'none';
+            });
+        });
+    }
+</script>
+
+<!-- Para cuando tengamos la carta seleccionada -->
+<style>
+    .character-card.selected {
+        border: 2px solid #b8db6b;
+        transform: scale(1.05);
+    }
+</style>
+{% endblock %}

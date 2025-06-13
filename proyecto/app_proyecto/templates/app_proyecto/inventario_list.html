@@ -1,0 +1,71 @@
+{% extends 'app_proyecto/base.html' %}
+{% block titulo %}Inventario{% endblock %}
+
+{% block contenido %}
+<div class="favoritos-header">
+    <h1>Inventario</h1>
+    <a href="{% url 'inventario_add' %}" class="favoritos-add-btn">Añadir</a>
+</div>
+
+<!-- Filtro -->
+<form method="GET">
+    <div class="search-bar">
+        <input type="text" name="nombrePersonaje" placeholder="Buscar personaje..." value="{{ request.GET.nombrePersonaje|default:'' }}">
+    </div>
+</form>
+
+<!-- Lista de inventario -->
+<div class="inventario-list">
+    {% for item in inventarios %}
+    <div class="inventario-card">
+        <div class="inventario-circle">
+            {% if item.personaje.imagenes_personaje.first %}
+                <img src="{{ item.personaje.imagenes_personaje.all.2.imagen.url }}" alt="Personaje">
+            {% endif %}
+        </div>
+        <div class="inventario-circle">
+            {% if item.arma and item.arma.imagenes_arma.first %}
+                <img src="{{ item.arma.imagenes_arma.first.imagen.url }}" alt="Arma">
+            {% endif %}
+        </div>
+        <div class="inventario-circle">
+            {% if item.casco %}
+                <img src="{{ item.casco.imagen.url }}" alt="Casco">
+            {% endif %}
+        </div>
+        <div class="inventario-circle">
+            {% if item.manos %}
+                <img src="{{ item.manos.imagen.url }}" alt="Manos">
+            {% endif %}
+        </div>
+        <div class="inventario-circle">
+            {% if item.pecho %}
+                <img src="{{ item.pecho.imagen.url }}" alt="Pecho">
+            {% endif %}
+        </div>
+        <div class="inventario-circle">
+            {% if item.botas %}
+                <img src="{{ item.botas.imagen.url }}" alt="Botas">
+            {% endif %}
+        </div>
+        <div class="inventario-circle">
+            {% if item.orbe %}
+                <img src="{{ item.orbe.imagen.url }}" alt="Orbe">
+            {% endif %}
+        </div>
+        <div class="inventario-circle">
+            {% if item.cuerda %}
+                <img src="{{ item.cuerda.imagen.url }}" alt="Cuerda">
+            {% endif %}
+        </div>
+        <div class="inventario-card-actions">
+            <a href="#" class="btn-edit">Editar</a>
+            <form method="post" action="#">
+                {% csrf_token %}
+                <button type="submit" class="btn-delete">Eliminar</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

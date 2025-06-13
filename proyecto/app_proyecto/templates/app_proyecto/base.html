@@ -64,7 +64,7 @@
 
             <!-- Menú Uso -->
             <div id="usoMenu" style="display: none;">
-                <a href="#" class="nav-item {% if request.resolver_match.url_name == 'user_inventario' %}active{% endif %}">
+                <a href="{% url 'inventario_list' %}" class="nav-item {% if request.resolver_match.url_name == 'user_inventario' %}active{% endif %}">
                     <span class="material-icons">inventory_2</span>
                     <span class="span-text">Inventario</span>
                 </a>

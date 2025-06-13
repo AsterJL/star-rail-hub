@@ -46,4 +46,7 @@ urlpatterns=[
     path('favoritos/delete/<int:pk>/', Favoritos_Delete.as_view(), name='favoritos_delete'),
 
     path('registro/', RegistroView.as_view(), name='registro'),
+
+    path('inventario/', InventarioListView.as_view(), name='inventario_list'),
+    path('inventario/add/', InventarioCreateView.as_view(), name='inventario_add'),
 ]

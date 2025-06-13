@@ -1118,9 +1118,6 @@ body {
 
 
 
-
-
-
 /* login.html */
 
 .login-container {
@@ -1196,3 +1193,74 @@ body {
     font-size: 0.9rem;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* favoritos.html */
+
+.favoritos-header {
+    display: flex;
+    justify-content: space-between; /* << Aquí está la clave */
+    align-items: center;
+    background-color: #4f4f4f33;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: left;
+    width: 100%;
+    max-width: 90vw;
+    box-sizing: border-box;
+    margin-bottom: 2rem;
+}
+
+.favoritos-add-btn {
+    display: inline-block;
+    background-color: #b8db6b;
+    color: #1a1b1e;
+    padding: 0.5rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.favoritos-add-btn:hover {
+    background-color: #cfe892;
+}
+
+.delete-fav-form {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.clear-fav-btn {
+    background: #00000033;
+    border: 1px solid #FFFFFF1A;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.clear-fav-btn:hover {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}

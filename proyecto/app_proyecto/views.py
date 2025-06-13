@@ -293,9 +293,24 @@ class Favoritos_List(LoginRequiredMixin, ListView):
     template_name = 'app_proyecto/favoritos_list.html'
     context_object_name = 'favoritos'
 
-    def get_queryset(self):
-        return Favorito.objects.filter(usuario=self.request.user).select_related('personaje').prefetch_related('personaje__imagenes_personaje')
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
     
+        contexto['elementos'] = ElementoPersonaje.objects.all()
+        contexto['rarezas'] = Rareza.objects.all()
+        contexto['funciones'] = Funcion.objects.all()
+
+        return contexto
+
+    def get_queryset(self):
+        query = Favorito.objects.filter(usuario=self.request.user).select_related('personaje').prefetch_related('personaje__imagenes_personaje')
+
+        nombre = self.request.GET.get('nombreFavorito')
+        if nombre:
+            query = query.filter(personaje__nombre__icontains=nombre)
+
+        return query
+
 class Favoritos_Add(LoginRequiredMixin, ListView):
     model = Personaje
     template_name = 'app_proyecto/favoritos_add.html'
@@ -337,5 +352,12 @@ class Favoritos_Add(LoginRequiredMixin, ListView):
                 personaje_id=personaje_id
             )
         return redirect('favoritos_list')
+    
+class Favoritos_Delete(LoginRequiredMixin, DeleteView):
+    model = Favorito
+    success_url = reverse_lazy('favoritos_list')
+
+    def get_queryset(self):
+        return Favorito.objects.filter(usuario=self.request.user)
 
 # OTROS USUARIOS

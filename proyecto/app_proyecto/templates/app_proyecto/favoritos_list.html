@@ -4,21 +4,54 @@
 {% block contenido %}
 <div class="favoritos-header">
     <h1>Favoritos</h1>
-    <a href="{% url 'favoritos_add' %}" class="login-btn float-end">Añadir</a>
+    <a href="{% url 'favoritos_add' %}" class="favoritos-add-btn">Añadir</a>
 </div>
 
+<!-- Filtros -->
+<form method="GET">
+    <!-- Filtro de Nombre -->
+    <div class="search-bar">
+        <input type="text" name="nombreFavorito" placeholder="Buscar favorito..." value="{{ request.GET.nombreFavorito|default:'' }}">
+    </div>
+</form>
+
 <div class="characters-grid">
-  {% for favorito in favoritos %}
+    {% for favorito in favoritos %}
     <a href="{% url 'personajes_details' favorito.personaje.pk %}" class="character-link">
-      <div class="character-card">
-        <div class="character-image">
-          <img src="{{ favorito.personaje.imagenes_personaje.first.imagen.url }}" alt="{{ favorito.personaje.nombre }}">
+        <div class="character-card">
+            <div class="character-image">
+                <img src="{{ favorito.personaje.imagenes_personaje.first.imagen.url }}" alt="{{ favorito.personaje.nombre }}">
+            </div>
+
+            <form method="post" action="{% url 'favoritos_delete' favorito.id %}" class="delete-fav-form">
+                {% csrf_token %}
+                <button type="submit" class="clear-fav-btn">✕</button>
+            </form>
+
+            <div class="character-icons">
+                <img src="{{ favorito.personaje.elemento.imagen.url }}" alt="{{ favorito.personaje.elemento.nombre }}" class="elemento-icon">
+                <img src="{{ favorito.personaje.funcion.imagen.url }}" alt="{{ favorito.personaje.funcion.nombre }}" class="funcion-icon">
+            </div>
+
+            <div class="{% if favorito.personaje.rareza.nombre == '5 estrellas' %}character-info-five{% else %}character-info-four{% endif %}">
+                <h3>{{ favorito.personaje.nombre }}</h3>
+                <div class="rareza-indicator">
+                    {% if favorito.personaje.rareza.nombre == "5 estrellas" %}
+                    <img src="{{ favorito.personaje.rareza.imagen.url }}" alt="{{ favorito.personaje.rareza.nombre }}">
+                    <img src="{{ favorito.personaje.rareza.imagen.url }}" alt="{{ favorito.personaje.rareza.nombre }}">
+                    <img src="{{ favorito.personaje.rareza.imagen.url }}" alt="{{ favorito.personaje.rareza.nombre }}">
+                    <img src="{{ favorito.personaje.rareza.imagen.url }}" alt="{{ favorito.personaje.rareza.nombre }}">
+                    <img src="{{ favorito.personaje.rareza.imagen.url }}" alt="{{ favorito.personaje.rareza.nombre }}">
+                    {% else %}
+                    <img src="{{ favorito.personaje.rareza.imagen.url }}" alt="{{ favorito.personaje.rareza.nombre }}">
+                    <img src="{{ favorito.personaje.rareza.imagen.url }}" alt="{{ favorito.personaje.rareza.nombre }}">
+                    <img src="{{ favorito.personaje.rareza.imagen.url }}" alt="{{ favorito.personaje.rareza.nombre }}">
+                    <img src="{{ favorito.personaje.rareza.imagen.url }}" alt="{{ favorito.personaje.rareza.nombre }}">
+                    {% endif %}
+                </div>
+            </div>
         </div>
-        <div class="character-info-{{ favorito.personaje.rareza.nombre|length }}">
-          <h3>{{ favorito.personaje.nombre }}</h3>
-        </div>
-      </div>
     </a>
-  {% endfor %}
+    {% endfor %}
 </div>
 {% endblock %}

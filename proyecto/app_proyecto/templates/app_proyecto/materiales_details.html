@@ -1,0 +1,73 @@
+{% extends 'app_proyecto/base.html' %}
+{% block titulo %}Material - {{ material.nombre }}{% endblock %}
+
+{% block contenido %}
+<div class="character-details">
+    <!-- Header -->
+    <header class="character-header">
+        <div class="character-image-details">
+            <img src="{{ material.imagen.url }}" alt="{{ material.nombre }}">
+        </div>
+        <div class="character-basic-info">
+            <h1>{{ material.nombre }}</h1>
+            <div class="character-traits">
+                <div class="rareza">
+                    {% if material.rareza.nombre == "5 estrellas" %}
+                    <img src="{{ material.rareza.imagen.url }}" alt="{{ material.rareza.nombre }}">
+                    <img src="{{ material.rareza.imagen.url }}" alt="{{ material.rareza.nombre }}">
+                    <img src="{{ material.rareza.imagen.url }}" alt="{{ material.rareza.nombre }}">
+                    <img src="{{ material.rareza.imagen.url }}" alt="{{ material.rareza.nombre }}">
+                    <img src="{{ material.rareza.imagen.url }}" alt="{{ material.rareza.nombre }}">
+                    {% elif material.rareza.nombre == "4 estrellas" %}
+                    <img src="{{ material.rareza.imagen.url }}" alt="{{ material.rareza.nombre }}">
+                    <img src="{{ material.rareza.imagen.url }}" alt="{{ material.rareza.nombre }}">
+                    <img src="{{ material.rareza.imagen.url }}" alt="{{ material.rareza.nombre }}">
+                    <img src="{{ material.rareza.imagen.url }}" alt="{{ material.rareza.nombre }}">
+                    {% elif material.rareza.nombre == "3 estrellas" %}
+                    <img src="{{ material.rareza.imagen.url }}" alt="{{ material.rareza.nombre }}">
+                    <img src="{{ material.rareza.imagen.url }}" alt="{{ material.rareza.nombre }}">
+                    <img src="{{ material.rareza.imagen.url }}" alt="{{ material.rareza.nombre }}">
+                    {% elif material.rareza.nombre == "2 estrellas" %}
+                    <img src="{{ material.rareza.imagen.url }}" alt="{{ material.rareza.nombre }}">
+                    <img src="{{ material.rareza.imagen.url }}" alt="{{ material.rareza.nombre }}">
+                    {% else %}
+                    <img src="{{ material.rareza.imagen.url }}" alt="{{ material.rareza.nombre }}">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Descripción -->
+    <section id="descripcion" class="character-section">
+        <h2>Descripción</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <p class="skill-description">{{ material.descripcion }}</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Métodos de obtención -->
+    <section id="obtencion" class="character-section">
+        <h2>Métodos de obtención</h2>
+        {% if material.obtencion.all %}
+        <div class="skills-grid">
+            <div class="skill-card">
+                <table class="tabla-obtencion">
+                    <tbody>
+                        {% for metodo in material.obtencion.all %}
+                        <tr>
+                            <td>{{ metodo.metodo }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% else %}
+        <p>Este material no tiene métodos de obtención registrados.</p>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}

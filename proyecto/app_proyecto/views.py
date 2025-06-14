@@ -186,6 +186,15 @@ class Equipo_Details (DetailView):
     template_name = 'app_proyecto/equipo_details.html'
     context_object_name = 'equipos'
 
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+        equipo = self.object
+
+        contexto['piezas'] = equipo.piezas_equipo.all()
+        contexto['personajes_recomendados'] = equipo.personajes_equipo.all()
+
+        return contexto
+
 # MATERIALES
 
 class Materiales_List (ListView):
@@ -216,7 +225,7 @@ class Materiales_List (ListView):
 class Materiales_Details (DetailView):
     model = Material
     template_name = 'app_proyecto/materiales_details.html'
-    context_object_name = 'materiales'
+    context_object_name = 'material'
 
 # ENCICLOPEDIA
 

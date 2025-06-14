@@ -1,0 +1,57 @@
+{% extends 'app_proyecto/base.html' %}
+{% block titulo %}Equipo - {{ equipos.nombre }}{% endblock %}
+
+{% block contenido %}
+<div class="character-details">
+    <!-- Header -->
+    <header class="character-header">
+        <div class="character-image-details">
+            <img src="{{ equipos.imagen.url }}" alt="{{ equipos.nombre }}">
+        </div>
+        <div class="character-basic-info">
+            <h1>{{ equipos.nombre }}</h1>
+            <h3 style="margin-top: 10px;">Set {{ equipos.tipo }}</h3>
+        </div>
+    </header>
+
+    <!-- Bono -->
+    <section id="bono" class="character-section">
+        <h2>Bono</h2>
+        <p class="skill-description">{{ equipos.bono }}</p>
+    </section>
+
+    <!-- Piezas del Equipo -->
+    <section id="piezas" class="character-section">
+        <h2>Piezas del Equipo</h2>
+        <div class="piezas-grid">
+            {% for pieza in piezas %}
+            <div class="pieza">
+                <img src="{{ pieza.imagen.url }}" alt="{{ pieza.nombre }}">
+                <p>{{ pieza.nombre }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Utilidad -->
+    <section id="builds" class="character-section">
+        <h2>Utilidad</h2>
+        <div class="builds-grid">
+            <div class="build-category">
+                <h4>Personajes Recomendados</h4>
+                <div class="recommended-items">
+                    {% for personaje in personajes_recomendados %}
+                    <a href="{% url 'personajes_details' personaje.pk %}">
+                        <div class="item">
+                            {% with personaje.imagenes_personaje.all.2 as imagen %}
+                            <img src="{{ imagen.imagen.url }}" alt="{{ personaje.nombre }}">
+                            {% endwith %}
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

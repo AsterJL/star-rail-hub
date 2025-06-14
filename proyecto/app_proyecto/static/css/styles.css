@@ -1030,6 +1030,115 @@ body {
 
 
 
+/* Detalles equipo.html */
+
+.piezas-grid {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.pieza {
+    width: 110px;
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.pieza img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 2px solid #b8db6b;
+    background-color: #1a1a1a;
+    padding: 5px;
+    transition: transform 0.3s ease;
+}
+
+.pieza img:hover {
+    transform: scale(1.1);
+}
+
+.pieza p {
+    margin-top: 0.5rem;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: white;
+    line-height: 1.1rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Detalles materiales.html */
+
+.detalles-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.detalles-imagen img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    border-radius: 12px;
+    background-color: #2a2b2e;
+    padding: 0.5rem;
+    border: 2px solid #b8db6b;
+}
+
+.detalles-info h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.rareza-indicator img {
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+}
+
+.detalles-section {
+    margin-bottom: 2rem;
+}
+
+.tabla-obtencion {
+    width: 100%;
+    border-collapse: collapse;
+    color: #eee;
+    font-size: 1rem;
+}
+
+.tabla-obtencion td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #444;
+    background-color: #1e1e1e;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* enciclopedia.html */

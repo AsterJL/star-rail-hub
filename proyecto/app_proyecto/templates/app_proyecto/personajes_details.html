@@ -107,9 +107,11 @@
                     <h4>Materiales necesarios:</h4>
                     <div class="materials-grid">
                         {% for material in habilidad.materiales.all %}
-                        <div class="material-card">
-                            <img src="{{ material.imagen.url }}" alt="{{ material.nombre }}">
-                        </div>
+                        <a href="{% url 'materiales_details' material.pk %}">
+                            <div class="material-card">
+                                <img src="{{ material.imagen.url }}" alt="{{ material.nombre }}">
+                            </div>
+                        </a>
                         {% endfor %}
                     </div>
                 </div>
@@ -142,9 +144,11 @@
                 <h4>Equipo Recomendado</h4>
                 <div class="recommended-items">
                     {% for equipo in equipo_recomendado %}
-                    <div class="item">
-                        <img src="{{ equipo.imagen.url }}" alt="{{ equipo.nombre }}">
-                    </div>
+                    <a href="{% url 'equipo_details' equipo.pk %}">
+                        <div class="item">
+                            <img src="{{ equipo.imagen.url }}" alt="{{ equipo.nombre }}">
+                        </div>
+                    </a>
                     {% endfor %}
                 </div>
             </div>

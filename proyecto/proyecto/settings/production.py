@@ -1,9 +1,9 @@
 from .base import *
 from decouple import config
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [config('SERVER_DOMAIN', default='localhost')]
+ALLOWED_HOSTS = ['127.0.0.1', config('SERVER_DOMAIN', default='localhost')]
 
 
 

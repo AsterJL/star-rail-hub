@@ -120,6 +120,18 @@
         </div>
     </section>
 
+    <!-- Splash Art -->
+    <section id="splashart" class="character-section">
+        <h2>Splash Art</h2>
+        <div class="skills-grid">
+            <div class="splashart-container">
+                {% with personajes.imagenes_personaje.all.1 as imagen %}
+                <img src="{{ imagen.imagen.url }}" alt="{{ personajes.nombre }}">
+                {% endwith %}
+            </div>
+        </div>
+    </section>
+
     <!-- Builds -->
     <section id="builds" class="character-section">
         <h2>Builds</h2>

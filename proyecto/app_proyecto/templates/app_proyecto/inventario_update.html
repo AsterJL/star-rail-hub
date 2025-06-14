@@ -18,8 +18,8 @@
     <div class="characters-grid" id="grid-personaje">
         {% for personaje in personajes %}
         <!-- Carta de Personaje -->
-        <label class="character-card single-select" data-group="personaje">
-            <input type="radio" name="personaje_id" value="{{ personaje.id }}" hidden>
+        <label class="character-card single-select {% if inventario.personaje.id == personaje.id %}selected{% endif %}" data-group="personaje">
+            <input type="radio" name="personaje_id" value="{{ personaje.id }}" hidden {% if inventario.personaje.id == personaje.id %}checked{% endif %}>
             <div class="character-image">
                 {% with personaje.imagenes_personaje.first as imagen %}
                 <img src="{{ imagen.imagen.url }}" alt="{{ personaje.nombre }}">
@@ -64,8 +64,8 @@
     <div class="characters-grid" id="grid-arma">
         {% for arma in armas %}
         <!-- Carta de Arma -->
-        <label class="character-card single-select" data-group="arma">
-            <input type="radio" name="arma_id" value="{{ arma.id }}" hidden>
+        <label class="character-card single-select {% if inventario.arma.id == arma.id %}selected{% endif %}" data-group="arma">
+            <input type="radio" name="arma_id" value="{{ arma.id }}" hidden {% if inventario.arma.id == arma.id %}checked{% endif %}>
             <div class="character-image">
                 {% with arma.imagenes_arma.first as imagen %}
                 <img src="{{ imagen.imagen.url }}" alt="{{ arma.nombre }}">
@@ -113,8 +113,8 @@
     <div class="characters-grid" id="grid-principal">
         {% for equipo in equipos_principales %}
         <!-- Carta de Equipo -->
-        <label class="equipo-card single-select" data-group="equipo_principal">
-            <input type="radio" name="equipo_principal_id" value="{{ equipo.id }}" hidden>
+        <label class="equipo-card single-select {% if inventario.equipo_principal.id == equipo.id %}selected{% endif %}" data-group="equipo_principal">
+            <input type="radio" name="equipo_principal_id" value="{{ equipo.id }}" hidden {% if inventario.equipo_principal.id == equipo.id %}checked{% endif %}>
             <div class="equipo-image">
                 <img src="{{ equipo.imagen.url }}" alt="{{ equipo.nombre }}">
                 <!-- Pie de carta -->
@@ -136,8 +136,8 @@
     <div class="characters-grid" id="grid-secundario">
         {% for equipo in equipos_secundarios %}
         <!-- Carta de Equipo -->
-        <label class="equipo-card single-select" data-group="equipo_secundario">
-            <input type="radio" name="equipo_secundario_id" value="{{ equipo.id }}" hidden>
+        <label class="equipo-card single-select {% if inventario.equipo_secundario.id == equipo.id %}selected{% endif %}" data-group="equipo_secundario">
+            <input type="radio" name="equipo_secundario_id" value="{{ equipo.id }}" hidden {% if inventario.equipo_secundario.id == equipo.id %}checked{% endif %}>
             <div class="equipo-image">
                 <img src="{{ equipo.imagen.url }}" alt="{{ equipo.nombre }}">
                 <!-- Pie de carta -->

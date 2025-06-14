@@ -59,13 +59,70 @@
             {% endif %}
         </div>
         <div class="inventario-card-actions">
-            <a href="#" class="btn-edit">Editar</a>
-            <form method="post" action="#">
+            <a href="{% url 'inventario_update' item.pk %}" class="btn-edit">Editar</a>
+            <form method="post" action="{% url 'inventario_delete' item.id %}" class="delete-form">
                 {% csrf_token %}
-                <button type="submit" class="btn-delete">Eliminar</button>
+                <button type="button" class="btn-delete" onclick="confirmDelete(this)">Eliminar</button>
             </form>
         </div>
     </div>
     {% endfor %}
 </div>
+
+<!-- Modal de confirmación -->
+<div id="custom-confirm" class="confirm-overlay" style="display: none;">
+    <div class="confirm-box">
+        <p>¿Está seguro de eliminar el item seleccionado?</p>
+        <div class="confirm-buttons">
+            <button class="confirm-cancel">Cancelar</button>
+            <button class="confirm-accept">Aceptar</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let targetForm = null;
+
+    function confirmDelete(button) {
+        targetForm = button.closest("form");
+        document.getElementById("custom-confirm").style.display = "flex";
+    }
+
+    document.querySelector(".confirm-cancel").addEventListener("click", () => {
+        document.getElementById("custom-confirm").style.display = "none";
+        targetForm = null;
+    });
+
+    document.querySelector(".confirm-accept").addEventListener("click", () => {
+        if (targetForm) {
+            targetForm.submit();
+        }
+    });
+</script>
+
+<script>
+    const form = document.querySelector('form');
+    const personajeRadio = document.querySelector('input[name="personaje_id"]');
+    const modal = document.getElementById('confirmModal');
+    const cancelBtn = document.getElementById('cancelModalBtn');
+    const acceptBtn = document.getElementById('acceptModalBtn');
+
+    form.addEventListener('submit', function (e) {
+    const selected = document.querySelector('input[name="personaje_id"]:checked');
+    if (!selected) {
+        e.preventDefault();
+        modal.classList.remove('hidden');
+    }
+    });
+
+    cancelBtn.addEventListener('click', () => {
+    modal.classList.add('hidden');
+    });
+
+    acceptBtn.addEventListener('click', () => {
+    modal.classList.add('hidden');
+    form.submit();
+    });
+</script>
+
 {% endblock %}

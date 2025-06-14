@@ -430,6 +430,44 @@ class InventarioCreateView(LoginRequiredMixin, CreateView):
         )
         inventario.save()
         return redirect('inventario_list')
+    
+class InventarioDeleteView(LoginRequiredMixin, DeleteView):
+    model = Inventario
+    success_url = reverse_lazy('inventario_list')
+
+    def get_queryset(self):
+        return Inventario.objects.filter(usuario=self.request.user)
+    
+class InventarioUpdateView(LoginRequiredMixin, UpdateView):
+    model = Inventario
+    template_name = 'app_proyecto/inventario_update.html'
+    fields = []
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['personajes'] = Personaje.objects.prefetch_related('imagenes_personaje').all()
+        context['armas'] = Arma.objects.prefetch_related('imagenes_arma').all()
+        context['equipos_principales'] = Equipo.objects.filter(tipo="Principal")
+        context['equipos_secundarios'] = Equipo.objects.filter(tipo="Secundario")
+        context['inventario'] = self.object
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        personaje_id = request.POST.get('personaje_id')
+        arma_id = request.POST.get('arma_id')
+        eq_principal_id = request.POST.get('equipo_principal_id')
+        eq_secundario_id = request.POST.get('equipo_secundario_id')
+
+        if not personaje_id:
+            return redirect('inventario_list')
+
+        self.object.personaje_id = personaje_id
+        self.object.arma_id = arma_id if arma_id else None
+        self.object.equipo_principal_id = eq_principal_id if eq_principal_id else None
+        self.object.equipo_secundario_id = eq_secundario_id if eq_secundario_id else None
+        self.object.save()
+        return redirect('inventario_list')
 
 # OTROS USUARIOS
 

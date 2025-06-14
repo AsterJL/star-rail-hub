@@ -49,4 +49,6 @@ urlpatterns=[
 
     path('inventario/', InventarioListView.as_view(), name='inventario_list'),
     path('inventario/add/', InventarioCreateView.as_view(), name='inventario_add'),
+    path('inventario/delete/<int:pk>/', InventarioDeleteView.as_view(), name='inventario_delete'),
+    path('inventario/update/<int:pk>/', InventarioUpdateView.as_view(), name='inventario_update'),
 ]

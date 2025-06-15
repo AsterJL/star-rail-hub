@@ -1,0 +1,25 @@
+{% extends 'app_proyecto/base.html' %}
+{% block titulo %}Funciones{% endblock %}
+
+{% block contenido %}
+<h1 style="text-align: center; margin-bottom: 2rem;">Funciones / Vías</h1>
+
+<div class="div-main-home">
+    <br><br>
+    <div class="enciclopedia-grid">
+        {% for funcion in funciones %}
+        <div class="enciclopedia-card">
+            <div class="float-left padding-right-2rem">
+                <img src="{{ funcion.imagen.url }}" alt="{{ funcion.nombre }}" class="enciclopedia-logo">
+            </div>
+            <div class="float-right">
+                <h3>{{ funcion.nombre }}</h3>
+                <br>
+                <p>{{ funcion.descripcion }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <br><br>
+</div>
+{% endblock %}

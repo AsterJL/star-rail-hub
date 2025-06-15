@@ -85,41 +85,6 @@ body {
     margin-left: 250px;
 }
 
-/* Contenido principal */
-.main-content {
-    flex: 1;
-    padding: 2rem;
-    color: white;
-}
-
-/* Footer */
-.site-footer {
-    background-color: #1a1b1e80;
-    padding: 1.5rem;
-    height: 120px;
-    border-top: 1px solid #4f4f4f;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.site-footer p {
-    color: white;
-}
-
-.site-footer-logo {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-    transition: transform 0.3s ease-in-out;
-}
-
-.site-footer-logo:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease-in-out;
-}
-
 /* Botones Wiki / Uso */
 .toggle-section-base {
     display: flex;
@@ -172,6 +137,7 @@ body {
     text-align: center;
 }
 
+/* Btn login */
 .login-btn {
     display: inline-block;
     background-color: #b8db6b;
@@ -187,6 +153,7 @@ body {
     background-color: #cfe892;
 }
 
+/* Nombre usuario */
 .user-info {
     display: flex;
     flex-direction: column;
@@ -199,6 +166,7 @@ body {
     color: #b8db6b;
 }
 
+/* Btn logout */
 .logout-btn {
     background-color: #e74c3c;
     color: white;
@@ -214,6 +182,43 @@ body {
 .logout-btn:hover {
     background-color: #ff665a;
 }
+
+/* Contenido principal */
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    color: white;
+}
+
+/* Footer */
+.site-footer {
+    background-color: #1a1b1e80;
+    padding: 1.5rem;
+    height: 120px;
+    border-top: 1px solid #4f4f4f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-footer p {
+    color: white;
+}
+
+.site-footer-logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.site-footer-logo:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+
 
 
 
@@ -310,6 +315,7 @@ body {
     margin-bottom: 1rem;
 }
 
+/* Estilos puntuales - Intereses */
 .float-left {
     float: left;
 }
@@ -336,7 +342,27 @@ body {
 
 
 
-/* Configuración listados - personajes_list.html */
+
+
+
+
+/* Configuración listados */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* personajes_list.html - armas_list.html */
 
 .characters-container {
     padding: 2rem;
@@ -443,6 +469,7 @@ body {
     display: contents;
 }
 
+/* Carta Peronaje */
 .character-card {
     width: 200px;
     background: #4f4f4f33;
@@ -486,6 +513,7 @@ body {
     border-radius: 4px;
 }
 
+/* Pie de carta */
 .character-info-five {
     padding: 0.5rem;
     text-align: center;
@@ -545,8 +573,24 @@ body {
     width: auto;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* equipo_list.html */
 
+/* Carta de equipo */
 .equipo-card {
     width: 200px;
     background: linear-gradient(to top, #b8db6b, #1a1a1a);
@@ -578,6 +622,7 @@ body {
     height: 70%;
 }
 
+/* Pie de carta */
 .equipo-info {
     padding: 0.5rem;
     text-align: center;
@@ -598,8 +643,24 @@ body {
     font-size: 1rem;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* materiales_list.html */
 
+/* Carta de material */
 .material-card-estilo-five {
     width: 120px;
     height: 150px;
@@ -714,6 +775,7 @@ body {
     height: 70%;
 }
 
+/* Pie de carta */
 .material-card-info {
     padding: 0.5rem;
     text-align: center;
@@ -750,9 +812,25 @@ body {
 
 
 
+/* Configuración detalles */
 
 
-/* Configuración detalles - personajes_details.html, armas_details.html */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* personajes_details.html, armas_details.html */
 
 .character-details {
     max-width: 1200px;
@@ -762,6 +840,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
+/* Header */
 .character-header {
     display: flex;
     align-items: center;
@@ -809,6 +888,7 @@ body {
     margin-right: 5px;
 }
 
+/* Menú interno de nav */
 .character-nav {
     background-color: #1a1b1e;
     border: 1px solid #4f4f4f;
@@ -849,6 +929,7 @@ body {
     color: #b8db6b;
 }
 
+/* Sección general */
 .character-section {
     margin-bottom: 50px;
     background: #00000080;
@@ -899,6 +980,7 @@ body {
     margin-right: 5px;
 }
 
+/* Sección habilidades */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -941,6 +1023,7 @@ body {
     text-align: justify;
 }
 
+/* Grid de materiales - habilidades */
 .materials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
@@ -974,6 +1057,7 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
+/* Sección splashart */
 .splashart-container {
     display: flex;
     justify-content: center;
@@ -981,7 +1065,7 @@ body {
     max-width: 100%;
     overflow: hidden;
     padding: 1rem;
-    background-color: #1e1e1e; /* opcional, para contraste */
+    background-color: #1e1e1e;
     border-radius: 12px;
 }
 
@@ -992,6 +1076,7 @@ body {
     object-fit: contain;
 }
 
+/* Sección builds */
 .builds-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1048,8 +1133,16 @@ body {
 
 
 
+
+
+
+
+
+
+
 /* Detalles equipo.html */
 
+/* Grid de piezas de equipo */
 .piezas-grid {
     display: flex;
     gap: 2rem;
@@ -1058,6 +1151,7 @@ body {
     margin-top: 1rem;
 }
 
+/* Piezas individuales */
 .pieza {
     width: 110px;
     text-align: center;
@@ -1087,6 +1181,11 @@ body {
     color: white;
     line-height: 1.1rem;
 }
+
+
+
+
+
 
 
 
@@ -1132,6 +1231,7 @@ body {
     margin-bottom: 2rem;
 }
 
+/* Métodos de obtención */
 .tabla-obtencion {
     width: 100%;
     border-collapse: collapse;
@@ -1144,6 +1244,8 @@ body {
     border-bottom: 1px solid #444;
     background-color: #1e1e1e;
 }
+
+
 
 
 
@@ -1188,6 +1290,7 @@ body {
     color: #b8db6b;
 }
 
+/* Grid de cartas */
 .enciclopedia-grid {
     display: flex;
     flex-direction: column;
@@ -1195,6 +1298,7 @@ body {
     width: 90%;
 }
 
+/* Cartas */
 .enciclopedia-card {
     display: flex;
     align-items: center;
@@ -1233,6 +1337,26 @@ body {
     margin: 0;
     font-size: 1.5rem;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* funciones_list.html */
+
+
+
+
+
 
 
 
@@ -1332,8 +1456,15 @@ body {
 
 
 
+
+
+
+
+
+
 /* registro.html */
 
+/* Condiciones contraseña */
 .password-hints {
     margin-top: 10px;
     font-size: 0.9rem;
@@ -1345,6 +1476,8 @@ body {
     color: #90ee90;
     font-weight: bold;
 }
+
+/* Condiciones username */
 .tooltip-container {
     position: relative;
     display: inline-block;
@@ -1368,6 +1501,8 @@ body {
     visibility: visible;
     opacity: 1;
 }
+
+/* Estilizado label-input */
 .form-group-registro {
     margin-bottom: 1.5rem;
     display: flex;
@@ -1401,8 +1536,12 @@ body {
 
 
 
+
+
+
 /* favoritos.html */
 
+/* Header */
 .favoritos-header {
     display: flex;
     justify-content: space-between; /* << Aquí está la clave */
@@ -1417,6 +1556,7 @@ body {
     margin-bottom: 2rem;
 }
 
+/* Btn Añadir */
 .favoritos-add-btn {
     display: inline-block;
     background-color: #b8db6b;
@@ -1432,6 +1572,7 @@ body {
     background-color: #cfe892;
 }
 
+/* Btn eliminar de fav form-btn */
 .delete-fav-form {
     position: absolute;
     top: 8px;
@@ -1474,8 +1615,11 @@ body {
 
 
 
+
+
 /* inventario.html */
 
+/* Lista de cartas */
 .inventario-list {
     display: flex;
     flex-direction: column;
@@ -1485,6 +1629,7 @@ body {
     margin: 0 auto;
 }
 
+/* Cartas */
 .inventario-card {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
@@ -1553,6 +1698,7 @@ body {
     background-color: #ff665a;
 }
 
+/* Btn añadir */
 .inventario-add-btn {
     display: inline-block;
     background-color: #b8db6b;
@@ -1568,6 +1714,7 @@ body {
     background-color: #cfe892;
 }
 
+/* Modal/alert eliminar */
 .confirm-overlay {
     position: fixed;
     top: 0;
@@ -1629,6 +1776,7 @@ body {
     background-color: #ff665a;
 }
 
+/* Modal/alert de inventario_add */
 .custom-modal {
     position: fixed;
     top: 0;

@@ -38,7 +38,7 @@ urlpatterns=[
     # path('enciclopedia/rarezas/', Rarezas_List.as_view(), name='rarezas_list'),
     # path('enciclopedia/rarezas/<int:pk>/', Rarezas_Details.as_view(), name='rarezas_details'),
     
-    # path('enciclopedia/funciones/', Funciones_List.as_view(), name='funciones_list'),
+    path('enciclopedia/funciones/', Funciones_List.as_view(), name='funciones_list'),
     # path('enciclopedia/funciones/<int:pk>/', Funciones_Details.as_view(), name='funciones_details'),
 
     path('favoritos/', Favoritos_List.as_view(), name='favoritos_list'),

@@ -17,47 +17,57 @@
 <!-- Lista de inventario -->
 <div class="inventario-list">
     {% for item in inventarios %}
+    <!-- Carta de Item -->
     <div class="inventario-card">
+        <!-- Personaje -->
         <div class="inventario-circle">
             {% if item.personaje.imagenes_personaje.first %}
                 <img src="{{ item.personaje.imagenes_personaje.all.2.imagen.url }}" alt="Personaje">
             {% endif %}
         </div>
+        <!-- Arma -->
         <div class="inventario-circle">
             {% if item.arma and item.arma.imagenes_arma.first %}
                 <img src="{{ item.arma.imagenes_arma.first.imagen.url }}" alt="Arma">
             {% endif %}
         </div>
+        <!-- Casco -->
         <div class="inventario-circle">
             {% if item.casco %}
                 <img src="{{ item.casco.imagen.url }}" alt="Casco">
             {% endif %}
         </div>
+        <!-- Manos -->
         <div class="inventario-circle">
             {% if item.manos %}
                 <img src="{{ item.manos.imagen.url }}" alt="Manos">
             {% endif %}
         </div>
+        <!-- Pecho -->
         <div class="inventario-circle">
             {% if item.pecho %}
                 <img src="{{ item.pecho.imagen.url }}" alt="Pecho">
             {% endif %}
         </div>
+        <!-- Botas -->
         <div class="inventario-circle">
             {% if item.botas %}
                 <img src="{{ item.botas.imagen.url }}" alt="Botas">
             {% endif %}
         </div>
+        <!-- Orbe -->
         <div class="inventario-circle">
             {% if item.orbe %}
                 <img src="{{ item.orbe.imagen.url }}" alt="Orbe">
             {% endif %}
         </div>
+        <!-- Cuerda -->
         <div class="inventario-circle">
             {% if item.cuerda %}
                 <img src="{{ item.cuerda.imagen.url }}" alt="Cuerda">
             {% endif %}
         </div>
+        <!-- Botones de Editar y Eliminar -->
         <div class="inventario-card-actions">
             <a href="{% url 'inventario_update' item.pk %}" class="btn-edit">Editar</a>
             <form method="post" action="{% url 'inventario_delete' item.id %}" class="delete-form">

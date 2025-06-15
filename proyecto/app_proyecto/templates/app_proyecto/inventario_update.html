@@ -117,6 +117,7 @@
             <input type="radio" name="equipo_principal_id" value="{{ equipo.id }}" hidden {% if inventario.equipo_principal.id == equipo.id %}checked{% endif %}>
             <div class="equipo-image">
                 <img src="{{ equipo.imagen.url }}" alt="{{ equipo.nombre }}">
+                
                 <!-- Pie de carta -->
                 <div class="equipo-info">
                     <h3>{{ equipo.nombre }}</h3>
@@ -140,6 +141,7 @@
             <input type="radio" name="equipo_secundario_id" value="{{ equipo.id }}" hidden {% if inventario.equipo_secundario.id == equipo.id %}checked{% endif %}>
             <div class="equipo-image">
                 <img src="{{ equipo.imagen.url }}" alt="{{ equipo.nombre }}">
+                
                 <!-- Pie de carta -->
                 <div class="equipo-info">
                     <h3>{{ equipo.nombre }}</h3>
@@ -192,8 +194,32 @@
                 label.classList.add('selected');
             }
 
-            // Evitar propagación para que el input no se vuelva a activar automáticamente
+            // Para que el input no se vuelva a activar solo
             e.preventDefault();
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Filtro distinto al resto
+        const filtros = [
+            { inputId: 'filter-personaje', group: 'personaje' },
+            { inputId: 'filter-arma', group: 'arma' },
+            { inputId: 'filter-principal', group: 'equipo_principal' },
+            { inputId: 'filter-secundario', group: 'equipo_secundario' }
+        ];
+    
+        // Detecta los cambios en el input y compara lo escrito con el nombre de las cartas.
+        filtros.forEach(filtro => {
+            const input = document.getElementById(filtro.inputId);
+            input.addEventListener('input', () => {
+                const searchTerm = input.value.toLowerCase();
+                document.querySelectorAll(`.single-select[data-group="${filtro.group}"]`).forEach(label => {
+                    const name = label.querySelector('h3').textContent.toLowerCase();
+                    label.style.display = name.includes(searchTerm) ? 'block' : 'none';
+                });
+            });
         });
     });
 </script>
@@ -206,6 +232,7 @@
         const cancelBtn = document.getElementById('cancelModalBtn');
         const acceptBtn = document.getElementById('acceptModalBtn');
     
+        // Lógica botón finalizar + modal
         finalizarBtn.addEventListener('click', function () {
             const personajeSeleccionado = document.querySelector('input[name="personaje_id"]:checked');
             if (personajeSeleccionado) {
@@ -215,10 +242,12 @@
             }
         });
     
+        // Lógica btn cancelar del modal
         cancelBtn.addEventListener('click', () => {
             modal.classList.add('hidden');
         });
     
+        // Lógica btn aceptar del modal
         acceptBtn.addEventListener('click', () => {
             modal.classList.add('hidden');
             form.submit();
@@ -226,7 +255,7 @@
     });
 </script>
 
-<!-- Para cuando tengamos la carta seleccionada -->
+<!-- css para cuando tengamos la carta seleccionada -->
 <style>
     .character-card.selected {
         border: 2px solid #b8db6b;

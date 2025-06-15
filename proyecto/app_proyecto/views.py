@@ -282,10 +282,10 @@ def enciclopedia (request):
 
 # FUNCIONES
 
-# class Funciones_List (ListView):
-#     model = Funcion
-#     template_name = 'app_proyecto/funciones_list.html'
-#     context_object_name = 'funciones'
+class Funciones_List (ListView):
+    model = Funcion
+    template_name = 'app_proyecto/funciones_list.html'
+    context_object_name = 'funciones'
 
 # class Funciones_Details (DetailView):
 #     model = Funcion

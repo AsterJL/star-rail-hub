@@ -7,11 +7,13 @@
     <a href="{% url 'inventario_list' %}" class="favoritos-add-btn">Volver</a>
 </div>
 
+<!-- Formulario para crear Item -->
 <form id="inventarioForm" method="post">
     {% csrf_token %}
 
     <!-- ELEGIR PERSONAJE -->
     <h2>Elegir Personaje</h2>
+
     <div class="search-bar">
         <input type="text" id="filter-personaje" placeholder="Buscar personaje...">
     </div>
@@ -194,6 +196,30 @@
 
             // Evitar propagación para que el input no se vuelva a activar automáticamente
             e.preventDefault();
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Filtro distinto al resto
+        const filtros = [
+            { inputId: 'filter-personaje', group: 'personaje' },
+            { inputId: 'filter-arma', group: 'arma' },
+            { inputId: 'filter-principal', group: 'equipo_principal' },
+            { inputId: 'filter-secundario', group: 'equipo_secundario' }
+        ];
+    
+        // Detecta los cambios en el input y compara lo escrito con el nombre de las cartas.
+        filtros.forEach(filtro => {
+            const input = document.getElementById(filtro.inputId);
+            input.addEventListener('input', () => {
+                const searchTerm = input.value.toLowerCase();
+                document.querySelectorAll(`.single-select[data-group="${filtro.group}"]`).forEach(label => {
+                    const name = label.querySelector('h3').textContent.toLowerCase();
+                    label.style.display = name.includes(searchTerm) ? 'block' : 'none';
+                });
+            });
         });
     });
 </script>

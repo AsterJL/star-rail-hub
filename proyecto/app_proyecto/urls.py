@@ -26,7 +26,7 @@ urlpatterns=[
 
     path('enciclopedia/', views.enciclopedia, name='enciclopedia'),
 
-    # path('enciclopedia/afiliaciones/', Afiliaciones_List.as_view(), name='afiliaciones_list'),
+    path('enciclopedia/afiliaciones/', Afiliaciones_List.as_view(), name='afiliaciones_list'),
     # path('enciclopedia/afiliaciones/<int:pk>/', Afiliaciones_Details.as_view(), name='afiliaciones_details'),
     
     # path('enciclopedia/enemigos/', Enemigos_List.as_view(), name='enemigos_list'),

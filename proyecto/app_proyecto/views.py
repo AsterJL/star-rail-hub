@@ -234,10 +234,10 @@ def enciclopedia (request):
 
 # AFILIACIONES
 
-# class Afiliaciones_List (ListView):
-#     model = Afiliacion
-#     template_name = 'app_proyecto/afiliaciones_list.html'
-#     context_object_name = 'afiliaciones'
+class Afiliaciones_List (ListView):
+    model = Afiliacion
+    template_name = 'app_proyecto/afiliaciones_list.html'
+    context_object_name = 'afiliaciones'
 
 # class Afiliaciones_Details (DetailView):
 #     model = Afiliacion

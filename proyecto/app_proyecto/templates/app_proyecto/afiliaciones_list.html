@@ -1,0 +1,25 @@
+{% extends 'app_proyecto/base.html' %}
+{% block titulo %}Afiliaciones{% endblock %}
+
+{% block contenido %}
+<h1 style="text-align: center; margin-bottom: 2rem;">Afiliaciones</h1>
+
+<div class="div-main-home">
+    <br><br>
+    <div class="enciclopedia-grid">
+        {% for afiliacion in afiliaciones %}
+        <div class="enciclopedia-card">
+            <div class="float-left padding-right-2rem">
+                <img src="{{ afiliacion.imagen.url }}" alt="{{ afiliacion.nombre }}" class="enciclopedia-logo">
+            </div>
+            <div class="float-right">
+                <h3>{{ afiliacion.nombre }}</h3>
+                <br>
+                <p>{{ afiliacion.descripcion }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <br><br>
+</div>
+{% endblock %}
